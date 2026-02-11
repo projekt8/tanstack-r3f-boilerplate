@@ -1,4 +1,4 @@
-import { Link } from '@tanstack/react-router'
+import { Link } from '@tanstack/react-router';
 import {
   ChevronDown,
   ChevronRight,
@@ -8,15 +8,13 @@ import {
   SquareFunction,
   StickyNote,
   X,
-} from 'lucide-react'
-import { useState } from 'react'
-import Logo from '@/assets/logo.svg?react'
+} from 'lucide-react';
+import { useState } from 'react';
+import Logo from '@/assets/logo.svg?react';
 
 export default function Header() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [groupedExpanded, setGroupedExpanded] = useState<
-    Record<string, boolean>
-  >({})
+  const [isOpen, setIsOpen] = useState(false);
+  const [groupedExpanded, setGroupedExpanded] = useState<Record<string, boolean>>({});
 
   return (
     <>
@@ -171,5 +169,5 @@ export default function Header() {
         </nav>
       </aside>
     </>
-  )
+  );
 }

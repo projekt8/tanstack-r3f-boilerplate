@@ -1,14 +1,7 @@
-import { createFileRoute } from '@tanstack/react-router'
-import {
-  Route as RouteIcon,
-  Server,
-  Shield,
-  Sparkles,
-  Waves,
-  Zap,
-} from 'lucide-react'
+import { createFileRoute } from '@tanstack/react-router';
+import { Route as RouteIcon, Server, Shield, Sparkles, Waves, Zap } from 'lucide-react';
 
-export const Route = createFileRoute('/')({ component: App })
+export const Route = createFileRoute('/')({ component: App });
 
 function App() {
   const features = [
@@ -48,7 +41,7 @@ function App() {
       description:
         'Built from the ground up for modern web applications. Deploy anywhere JavaScript runs.',
     },
-  ]
+  ];
 
   return (
     <>
@@ -66,9 +59,8 @@ function App() {
           The framework for next generation web experiences
         </p>
         <p className="text-gray-300">
-          Full-stack framework powered by TanStack Router for React and Solid.
-          Build modern applications with server functions, streaming, and type
-          safety.
+          Full-stack framework powered by TanStack Router for React and Solid. Build modern
+          applications with server functions, streaming, and type safety.
         </p>
       </section>
 
@@ -83,13 +75,11 @@ function App() {
                 <div className="mb-4">{feature.icon}</div>
                 <h2 className="mb-3 font-sans text-2xl">{feature.title}</h2>
               </div>
-              <p className="leading-relaxed text-gray-400">
-                {feature.description}
-              </p>
+              <p className="leading-relaxed text-gray-400">{feature.description}</p>
             </div>
           ))}
         </div>
       </section>
     </>
-  )
+  );
 }
