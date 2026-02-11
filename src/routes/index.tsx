@@ -54,16 +54,16 @@ function App() {
     <>
       <section className="relative mx-auto max-w-5xl px-6 py-20 text-center">
         <div className="mb-6 flex items-center justify-center gap-6">
-          <h1 className="font-serif">
-            TANSTACK START{' '}
+          <h1 className="uppercase">
+            tanstack start{' '}
             <span className="block bg-linear-to-r from-cyan-400 to-blue-400 bg-clip-text text-9xl text-transparent">
               &
             </span>{' '}
-            React Three Fiber
+            more
           </h1>
         </div>
         <p className="mb-4 text-2xl md:text-3xl">
-          The framework for next generation AI applications
+          The framework for next generation web experiences
         </p>
         <p className="text-gray-300">
           Full-stack framework powered by TanStack Router for React and Solid.
@@ -77,12 +77,12 @@ function App() {
           {features.map((feature) => (
             <div
               key={feature.title}
-              className="rounded-xl border border-slate-700 bg-slate-800/50 p-6 backdrop-blur-sm transition-all duration-300 hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/10"
+              className="rounded-xl border border-slate-700 bg-slate-800/50 p-6 backdrop-blur-sm transition duration-300 hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/10"
             >
-              <div className="mb-4">{feature.icon}</div>
-              <h2 className="mb-3 text-xl font-semibold text-white">
-                {feature.title}
-              </h2>
+              <div className="flex items-center gap-4">
+                <div className="mb-4">{feature.icon}</div>
+                <h2 className="mb-3 font-sans text-2xl">{feature.title}</h2>
+              </div>
               <p className="leading-relaxed text-gray-400">
                 {feature.description}
               </p>

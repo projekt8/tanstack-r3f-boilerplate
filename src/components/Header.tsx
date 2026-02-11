@@ -10,6 +10,7 @@ import {
   X,
 } from 'lucide-react'
 import { useState } from 'react'
+import Logo from '@/assets/logo.svg?react'
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
@@ -28,12 +29,8 @@ export default function Header() {
         >
           <Menu size={24} />
         </button>
-        <Link to="/" className="ml-4">
-          <img
-            src="/tanstack-word-logo-white.svg"
-            alt="TanStack Logo"
-            className="h-10"
-          />
+        <Link to="/" className="ml-4" aria-label="TANSTACK">
+          <Logo className="h-10 w-auto" />
         </Link>
       </header>
 
