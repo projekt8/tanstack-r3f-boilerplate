@@ -2,7 +2,12 @@ import interFont from '@fontsource-variable/inter/files/inter-latin-wght-normal.
 import playfairFont from '@fontsource-variable/playfair-display/files/playfair-display-latin-wght-normal.woff2?url'
 
 import { TanStackDevtools } from '@tanstack/react-devtools'
-import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
+import {
+  HeadContent,
+  Link,
+  Scripts,
+  createRootRoute,
+} from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import appCss from '@/styles/index.css?url'
 import Header from '@/components/Header'
@@ -53,6 +58,7 @@ export const Route = createRootRoute({
   }),
 
   shellComponent: RootDocument,
+  notFoundComponent: NotFound,
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {
@@ -78,5 +84,22 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <Scripts />
       </body>
     </html>
+  )
+}
+
+function NotFound() {
+  return (
+    <div className="flex flex-col items-center justify-center p-12 text-center">
+      <h1 className="mb-4">404 - Not Found</h1>
+      <p className="mb-8 text-xl">
+        The page you are looking for does not exist.
+      </p>
+      <Link
+        to="/"
+        className="text-blue-400 hover:text-blue-300 hover:underline"
+      >
+        Go Home
+      </Link>
+    </div>
   )
 }
