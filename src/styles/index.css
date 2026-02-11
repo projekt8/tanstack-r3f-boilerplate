@@ -1,75 +1,75 @@
-@import "tailwindcss";
-@import "./fonts.css";
+@import 'tailwindcss';
+@import './fonts.css';
 
 @theme {
-	/* Typography */
-	--font-sans: "Inter", system-ui, sans-serif;
-	--font-serif: "Playfair Display", serif;
+  /* Typography */
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-serif: 'Playfair Display', serif;
 
-	/* Colors */
-	--color-primary: #ff6345;
-	--color-secondary: #2c3f52;
-	--color-secondary-100: #28394a;
-	--color-secondary-200: #233242;
-	--color-secondary-300: #1f2c39;
-	--color-secondary-400: #1a2631;
+  /* Colors */
+  --color-primary: #ff6345;
+  --color-secondary: #2c3f52;
+  --color-secondary-100: #28394a;
+  --color-secondary-200: #233242;
+  --color-secondary-300: #1f2c39;
+  --color-secondary-400: #1a2631;
 
-	--color-black: #0f1b27;
-	--color-white: #f5fbff;
-	--color-success: var(--color-green-400);
-	--color-error: var(--color-red-400);
+  --color-black: #0f1b27;
+  --color-white: #f5fbff;
+  --color-success: var(--color-green-400);
+  --color-error: var(--color-red-400);
 
-	/* Breakpoints */
-	--breakpoint-sm: 40rem; /* 640px */
-	--breakpoint-md: 48rem; /* 768px */
-	--breakpoint-lg: 64rem; /* 1024px */
-	--breakpoint-xl: 80rem; /* 1280px */
-	--breakpoint-2xl: 96rem; /* 1536px */
+  /* Breakpoints */
+  --breakpoint-sm: 40rem; /* 640px */
+  --breakpoint-md: 48rem; /* 768px */
+  --breakpoint-lg: 64rem; /* 1024px */
+  --breakpoint-xl: 80rem; /* 1280px */
+  --breakpoint-2xl: 96rem; /* 1536px */
 }
 
 @layer base {
-	html {
-		@apply bg-black;
-	}
+  html {
+    @apply bg-black;
+  }
 
-	body {
-		@apply from-secondary m-0 bg-linear-to-br to-black p-0 font-sans font-light text-white;
-	}
+  body {
+    @apply m-0 bg-linear-to-br from-secondary to-black p-0 font-sans font-light text-white;
+  }
 
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		@apply mb-4 font-serif leading-none font-bold;
-	}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply mb-4 font-serif leading-none font-bold;
+  }
 
-	h1 {
-		@apply mb-6 text-5xl md:text-7xl;
-	}
+  h1 {
+    @apply mb-6 text-5xl md:text-7xl;
+  }
 
-	h2 {
-		@apply mb-6 text-4xl md:text-6xl;
-	}
+  h2 {
+    @apply mb-6 text-4xl md:text-6xl;
+  }
 
-	h3 {
-		@apply text-3xl md:text-5xl;
-	}
+  h3 {
+    @apply text-3xl md:text-5xl;
+  }
 
-	h4 {
-		@apply text-2xl md:text-4xl;
-	}
+  h4 {
+    @apply text-2xl md:text-4xl;
+  }
 
-	h5 {
-		@apply text-xl md:text-3xl;
-	}
+  h5 {
+    @apply text-xl md:text-3xl;
+  }
 
-	h6 {
-		@apply text-lg md:text-2xl;
-	}
+  h6 {
+    @apply text-lg md:text-2xl;
+  }
 
-	p {
-		@apply mb-4 text-base last:mb-0 md:text-lg;
-	}
+  p {
+    @apply mb-4 text-base last:mb-0 md:text-lg;
+  }
 }

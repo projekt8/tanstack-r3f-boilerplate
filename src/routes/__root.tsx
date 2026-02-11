@@ -1,10 +1,10 @@
-import appCss from '@/styles/index.css?url'
 import interFont from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url'
 import playfairFont from '@fontsource-variable/playfair-display/files/playfair-display-latin-wght-normal.woff2?url'
 
 import { TanStackDevtools } from '@tanstack/react-devtools'
-import { createRootRoute, HeadContent, Scripts } from '@tanstack/react-router'
+import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
+import appCss from '@/styles/index.css?url'
 import Header from '@/components/Header'
 
 export const Route = createRootRoute({
