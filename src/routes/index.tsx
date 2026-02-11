@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { Route as RouteIcon, Server, Shield, Sparkles, Waves, Zap } from 'lucide-react';
+import { Container } from '@/components/Container';
 
 export const Route = createFileRoute('/')({ component: App });
 
@@ -44,9 +45,9 @@ function App() {
   ];
 
   return (
-    <>
-      <section className="relative mx-auto max-w-5xl px-6 py-20 text-center">
-        <div className="mb-6 flex items-center justify-center gap-6">
+    <Container className="flex flex-col gap-12">
+      <section className="relative mx-auto max-w-5xl text-center">
+        <div className="flex items-center justify-center gap-4">
           <h1 className="uppercase">
             tanstack start{' '}
             <span className="block bg-linear-to-r from-cyan-400 to-blue-400 bg-clip-text text-9xl text-transparent">
@@ -64,7 +65,7 @@ function App() {
         </p>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-16">
+      <section className="mx-auto max-w-7xl">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {features.map((feature) => (
             <div
@@ -80,6 +81,6 @@ function App() {
           ))}
         </div>
       </section>
-    </>
+    </Container>
   );
 }

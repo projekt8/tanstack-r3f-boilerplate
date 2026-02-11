@@ -64,7 +64,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body className="grid min-h-dvh grid-rows-[auto_1fr]">
         <Header />
-        <main className="grid gap-20">{children}</main>
+        <main className="py-10 md:py-20">{children}</main>
         <TanStackDevtools
           config={{
             position: 'bottom-right',
