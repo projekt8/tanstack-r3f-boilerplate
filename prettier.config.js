@@ -2,13 +2,16 @@
 
 /** @type {import('prettier').Config & import('prettier-plugin-tailwindcss').PluginOptions} */
 const config = {
-  semi: false,
+  semi: true,
   singleQuote: true,
-  trailingComma: 'all',
+  tabWidth: 2,
+  trailingComma: 'es5',
+  printWidth: 100,
+  arrowParens: 'always',
   tailwindStylesheet: './src/styles/index.css',
   tailwindAttributes: ['className'],
   tailwindFunctions: ['clsx', 'cva', 'cn'],
   plugins: ['prettier-plugin-tailwindcss'],
-}
+};
 
-export default config
+export default config;
