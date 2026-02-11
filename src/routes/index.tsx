@@ -2,48 +2,48 @@ import { createFileRoute } from '@tanstack/react-router';
 import { Route as RouteIcon, Server, Shield, Sparkles, Waves, Zap } from 'lucide-react';
 import { Container } from '@/components/Container';
 
-export const Route = createFileRoute('/')({ component: App });
+export const Route = createFileRoute('/')({ component: HomePage });
 
-function App() {
-  const features = [
-    {
-      icon: <Zap className="h-12 w-12 text-cyan-400" />,
-      title: 'Powerful Server Functions',
-      description:
-        'Write server-side code that seamlessly integrates with your client components. Type-safe, secure, and simple.',
-    },
-    {
-      icon: <Server className="h-12 w-12 text-cyan-400" />,
-      title: 'Flexible Server Side Rendering',
-      description:
-        'Full-document SSR, streaming, and progressive enhancement out of the box. Control exactly what renders where.',
-    },
-    {
-      icon: <RouteIcon className="h-12 w-12 text-cyan-400" />,
-      title: 'API Routes',
-      description:
-        'Build type-safe API endpoints alongside your application. No separate backend needed.',
-    },
-    {
-      icon: <Shield className="h-12 w-12 text-cyan-400" />,
-      title: 'Strongly Typed Everything',
-      description:
-        'End-to-end type safety from server to client. Catch errors before they reach production.',
-    },
-    {
-      icon: <Waves className="h-12 w-12 text-cyan-400" />,
-      title: 'Full Streaming Support',
-      description:
-        'Stream data from server to client progressively. Perfect for AI applications and real-time updates.',
-    },
-    {
-      icon: <Sparkles className="h-12 w-12 text-cyan-400" />,
-      title: 'Next Generation Ready',
-      description:
-        'Built from the ground up for modern web applications. Deploy anywhere JavaScript runs.',
-    },
-  ];
+const features = [
+  {
+    icon: <Zap className="h-12 w-12 text-cyan-400" />,
+    title: 'Powerful Server Functions',
+    description:
+      'Write server-side code that seamlessly integrates with your client components. Type-safe, secure, and simple.',
+  },
+  {
+    icon: <Server className="h-12 w-12 text-cyan-400" />,
+    title: 'Flexible Server Side Rendering',
+    description:
+      'Full-document SSR, streaming, and progressive enhancement out of the box. Control exactly what renders where.',
+  },
+  {
+    icon: <RouteIcon className="h-12 w-12 text-cyan-400" />,
+    title: 'API Routes',
+    description:
+      'Build type-safe API endpoints alongside your application. No separate backend needed.',
+  },
+  {
+    icon: <Shield className="h-12 w-12 text-cyan-400" />,
+    title: 'Strongly Typed Everything',
+    description:
+      'End-to-end type safety from server to client. Catch errors before they reach production.',
+  },
+  {
+    icon: <Waves className="h-12 w-12 text-cyan-400" />,
+    title: 'Full Streaming Support',
+    description:
+      'Stream data from server to client progressively. Perfect for AI applications and real-time updates.',
+  },
+  {
+    icon: <Sparkles className="h-12 w-12 text-cyan-400" />,
+    title: 'Next Generation Ready',
+    description:
+      'Built from the ground up for modern web applications. Deploy anywhere JavaScript runs.',
+  },
+];
 
+function HomePage() {
   return (
     <Container className="flex flex-col gap-12">
       <section className="relative mx-auto max-w-5xl text-center">
