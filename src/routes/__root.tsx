@@ -1,10 +1,11 @@
-import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
-import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
+import appCss from '@/styles/index.css?url'
+import interFont from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url'
+import playfairFont from '@fontsource-variable/playfair-display/files/playfair-display-latin-wght-normal.woff2?url'
+
 import { TanStackDevtools } from '@tanstack/react-devtools'
-
-import Header from '../components/Header'
-
-import appCss from '../styles.css?url'
+import { createRootRoute, HeadContent, Scripts } from '@tanstack/react-router'
+import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
+import Header from '@/components/Header'
 
 export const Route = createRootRoute({
   head: () => ({
@@ -19,11 +20,29 @@ export const Route = createRootRoute({
       {
         title: 'TanStack Start Starter',
       },
+      {
+        name: 'description',
+        content: 'TanStack Start Starter',
+      },
     ],
     links: [
       {
         rel: 'stylesheet',
         href: appCss,
+      },
+      {
+        rel: 'preload',
+        href: interFont,
+        as: 'font',
+        type: 'font/woff2',
+        crossOrigin: 'anonymous',
+      },
+      {
+        rel: 'preload',
+        href: playfairFont,
+        as: 'font',
+        type: 'font/woff2',
+        crossOrigin: 'anonymous',
       },
     ],
   }),
@@ -37,9 +56,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body className="grid min-h-dvh grid-rows-[auto_1fr]">
         <Header />
-        {children}
+        <main className="grid gap-20">{children}</main>
         <TanStackDevtools
           config={{
             position: 'bottom-right',
