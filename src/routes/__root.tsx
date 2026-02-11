@@ -6,8 +6,9 @@ import { TanStackDevtools } from '@tanstack/react-devtools';
 import { HeadContent, Link, Scripts, createRootRoute } from '@tanstack/react-router';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import appCss from '@/styles/index.css?url';
-import Header from '@/components/Header';
 import { SmoothScroll } from '@/components/SmoothScroll';
+import Header from '@/components/Header';
+import { Footer } from '@/components/Footer';
 
 export const Route = createRootRoute({
   head: () => ({
@@ -64,10 +65,12 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body className="grid min-h-dvh grid-rows-[auto_1fr]">
+      <body className="grid min-h-dvh grid-rows-[auto_1fr_auto]">
         <Header />
 
         <main className="py-10 md:py-20">{children}</main>
+
+        <Footer />
 
         <SmoothScroll />
         <ReactTempus patch />

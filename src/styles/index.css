@@ -10,10 +10,7 @@
   /* Colors */
   --color-primary: #ff6345;
   --color-secondary: #2c3f52;
-  --color-secondary-100: #28394a;
-  --color-secondary-200: #233242;
-  --color-secondary-300: #1f2c39;
-  --color-secondary-400: #1a2631;
+  --color-accent: #e64e76;
 
   --color-black: #0f1b27;
   --color-white: #f5fbff;
@@ -72,5 +69,15 @@
 
   p {
     @apply mb-4 text-base last:mb-0 md:text-lg;
+  }
+}
+
+@layer utilities {
+  .bg-gradient-primary {
+    @apply bg-linear-to-br from-primary to-accent;
+  }
+
+  .text-gradient-primary {
+    @apply bg-linear-to-br from-primary to-accent bg-clip-text text-transparent;
   }
 }
