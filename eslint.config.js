@@ -5,6 +5,6 @@ import { tanstackConfig } from '@tanstack/eslint-config';
 export default [
   ...tanstackConfig,
   {
-    ignores: ['.output/', '.tanstack/', 'dist/', 'build/', 'node_modules/'],
+    ignores: ['.output/', '.tanstack/', 'dist/', 'build/', 'node_modules/', 'routeTree.gen.ts'],
   },
 ];
