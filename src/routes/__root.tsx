@@ -31,6 +31,11 @@ export const Route = createRootRoute({
         href: appCss,
       },
       {
+        rel: 'icon',
+        href: '/favicon.svg',
+        type: 'image/svg+xml',
+      },
+      {
         rel: 'preload',
         href: interFont,
         as: 'font',
