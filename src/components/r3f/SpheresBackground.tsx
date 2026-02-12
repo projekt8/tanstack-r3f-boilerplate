@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { MathUtils } from 'three';
 import { useFrame } from '@react-three/fiber';
-import { Environment, Instance, Instances, PerspectiveCamera, View } from '@react-three/drei';
+import { Environment, Instance, Instances, PerspectiveCamera } from '@react-three/drei';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import type { InstancedMesh, Object3D } from 'three';
@@ -16,7 +16,7 @@ const particles = Array.from({ length: 150 }, () => ({
 
 export default function SpheresBackground() {
   return (
-    <View className="fixed inset-0 h-full w-full">
+    <>
       <PerspectiveCamera makeDefault fov={45} position={[0, 5, 35]} />
       <fog attach="fog" args={['#ff6345', 25, -5]} />
       <ambientLight intensity={1} />
@@ -24,7 +24,7 @@ export default function SpheresBackground() {
       <Bubbles />
 
       <Environment preset="city" />
-    </View>
+    </>
   );
 }
 

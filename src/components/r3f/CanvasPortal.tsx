@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense } from 'react';
 import { suspend } from 'suspend-react';
 import {
   Bounds,
@@ -7,12 +7,12 @@ import {
   OrbitControls,
   PerspectiveCamera,
   View,
-  useProgress,
 } from '@react-three/drei';
 import type { HTMLAttributes } from 'react';
 import type {
   BoundsProps,
   ContactShadowsProps,
+  EnvironmentProps,
   OrbitControlsProps,
   PerspectiveCameraProps,
   ViewProps,
@@ -24,62 +24,87 @@ const environmentTexture = import('@pmndrs/assets/hdri/warehouse.exr').then(
 );
 
 export interface CanvasPortalProps extends HTMLAttributes<HTMLDivElement> {
-  shadows?: boolean | ContactShadowsProps;
-  orbitControls?: boolean | OrbitControlsProps;
-  camera?: PerspectiveCameraProps;
+  view?: ViewProps;
   loader?: boolean;
-  viewProps?: ViewProps;
-  boundsProps?: BoundsProps;
+  bounds?: boolean | BoundsProps;
+  camera?: boolean | PerspectiveCameraProps;
+  orbitControls?: boolean | OrbitControlsProps;
+  environment?: boolean | EnvironmentProps;
+  shadows?: boolean | ContactShadowsProps;
+  lights?: boolean;
+  fullscreen?: boolean;
 }
 
 const CanvasPortal = ({
   children,
   className,
-  shadows = true,
-  orbitControls = true,
-  camera = { fov: 30, position: [3, 2.5, 5] },
-  loader = true,
-  viewProps,
-  boundsProps,
+  view,
+  loader = false,
+  bounds = false,
+  camera = false,
+  orbitControls = false,
+  shadows = false,
+  environment = false,
+  lights = false,
+  fullscreen = false,
   ...props
 }: CanvasPortalProps) => {
-  const { progress, active } = useProgress();
-  const [loaded, setLoaded] = useState(false);
-
-  useEffect(() => {
-    if (!active && progress === 100) {
-      const timeout = setTimeout(() => setLoaded(true), 300);
-      return () => clearTimeout(timeout);
-    }
-  }, [active, progress]);
-
   return (
     <div
       className={cn(
         'relative flex h-full min-h-[400px] w-full items-center justify-center',
+        fullscreen && 'fixed inset-0 h-full w-full',
         loader &&
-          !loaded &&
           'before:absolute before:size-10 before:rounded-full before:border-3 before:border-white/20 before:opacity-100 before:transition-opacity before:duration-200 before:content-[""]',
         loader &&
-          !loaded &&
           'after:absolute after:size-10 after:animate-spin after:rounded-full after:border-t-3 after:border-primary after:opacity-100 after:transition-opacity after:duration-200 after:content-[""]',
-        loader && loaded && 'before:opacity-0 after:opacity-0',
+        loader && 'before:opacity-0 after:opacity-0',
         orbitControls && 'cursor-grab active:cursor-grabbing',
         className
       )}
       {...props}
     >
-      <View className="h-full w-full" {...viewProps}>
-        <ambientLight intensity={0.5} />
-        <pointLight position={[0, 0, -15]} intensity={1} color="#ff6345" />
-        <Environment files={suspend(environmentTexture) as string} />
+      <Suspense fallback={null}>
+        <View className="absolute inset-0 z-10 h-full w-full" {...view}>
+          {lights && (
+            <>
+              <ambientLight intensity={0.5} />
+              <pointLight position={[0, 0, -15]} intensity={1} color="#ff6345" />
+            </>
+          )}
 
-        <PerspectiveCamera makeDefault {...camera} />
+          {environment && (
+            <Environment
+              files={suspend(environmentTexture) as string}
+              {...(typeof environment === 'object' ? environment : {})}
+            />
+          )}
 
-        <Suspense fallback={null}>
-          <Bounds fit observe clip margin={1.45} maxDuration={1} {...boundsProps}>
-            {children}
-          </Bounds>
+          {camera && (
+            <PerspectiveCamera
+              makeDefault
+              fov={30}
+              position={[3, 2.5, 5]}
+              {...(typeof camera === 'object' ? camera : {})}
+            >
+              {children}
+            </PerspectiveCamera>
+          )}
+
+          {bounds ? (
+            <Bounds
+              fit
+              observe
+              clip
+              margin={1.4}
+              maxDuration={1}
+              {...(typeof bounds === 'object' ? bounds : {})}
+            >
+              {children}
+            </Bounds>
+          ) : (
+            children
+          )}
 
           {shadows && (
             <ContactShadows opacity={0.5} {...(typeof shadows === 'object' ? shadows : {})} />
@@ -96,8 +121,8 @@ const CanvasPortal = ({
               {...(typeof orbitControls === 'object' ? orbitControls : {})}
             />
           )}
-        </Suspense>
-      </View>
+        </View>
+      </Suspense>
     </div>
   );
 };
