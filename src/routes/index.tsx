@@ -1,4 +1,4 @@
-import { Suspense, lazy } from 'react';
+import { lazy } from 'react';
 import { createFileRoute } from '@tanstack/react-router';
 import {
   Move3D,
@@ -12,12 +12,28 @@ import {
   Zap,
 } from 'lucide-react';
 import { Container } from '@/components/Container';
+import CanvasPortal from '@/components/r3f/CanvasPortal';
 
 const SpheresBackground = lazy(() => import('@/components/r3f/SpheresBackground'));
 
 export const Route = createFileRoute('/')({ component: HomePage });
 
 const features = [
+  {
+    icon: <Rocket className="size-8" />,
+    title: 'Optimized for Pagespeed',
+    description: 'Fastest possible pagespeed performance with zero configuration.',
+  },
+  {
+    icon: <Move3D className="size-8" />,
+    title: 'Immersive 3D Experiences',
+    description: 'Build 3D applications with ease. Powered by React Three Fiber.',
+  },
+  {
+    icon: <MoveIcon className="size-8" />,
+    title: 'GSAP Animations & Smooth Scroll',
+    description: 'Create stunning animations with GSAP, the state of the art animation library.',
+  },
   {
     icon: <Sparkles className="size-8" />,
     title: 'Next Generation Ready',
@@ -35,21 +51,6 @@ const features = [
     title: 'Flexible Server Side Rendering',
     description:
       'Full-document SSR, streaming, and progressive enhancement out of the box. Control exactly what renders where.',
-  },
-  {
-    icon: <Rocket className="size-8" />,
-    title: 'Optimized for Performance',
-    description: 'Fastest possible performance with zero configuration.',
-  },
-  {
-    icon: <Move3D className="size-8" />,
-    title: 'Immersive 3D Experiences',
-    description: 'Build 3D applications with ease. Powered by React Three Fiber.',
-  },
-  {
-    icon: <MoveIcon className="size-8" />,
-    title: 'GSAP Animations & Smooth Scroll',
-    description: 'Create stunning animations with GSAP, the state of the art animation library.',
   },
   {
     icon: <Waves className="size-8" />,
@@ -74,24 +75,39 @@ const features = [
 function HomePage() {
   return (
     <>
-      <Suspense fallback={null}>
+      <CanvasPortal
+        fullscreen
+        loader={false}
+        bounds={false}
+        camera={false}
+        orbitControls={false}
+        shadows={false}
+        environment={false}
+        lights={false}
+      >
         <SpheresBackground />
-      </Suspense>
+      </CanvasPortal>
 
       <Container className="relative flex flex-col gap-12">
         <section className="relative mx-auto max-w-5xl text-center">
-          <div className="flex items-center justify-center gap-4">
+          <div className="flex items-center justify-center gap-4 text-shadow-black/30 text-shadow-lg">
             <h1 className="uppercase">
-              Tanstack Start <span className="text-gradient-primary block text-8xl">&</span>
+              Tanstack
+              <br /> Three.js
+              <span className="block text-gradient-primary text-8xl text-shadow-none">&</span>
               <small>more</small>
             </h1>
           </div>
           <p className="mb-4 text-2xl md:text-3xl">
-            The boilerplate for next generation web experiences
+            A boilerplate for next generation web experiences
           </p>
           <p className="text-gray-300">
-            Full-stack framework powered by TanStack Start for React. Build modern applications with
-            server functions, streaming, and type safety.
+            Full-stack framework powered by TanStack Start, progressively enhanced with Three.js
+            (React Three Fiber) for immersive 3D web experiences and GSAP for stunning animations.
+          </p>
+          <p className="text-gray-300">
+            Build modern applications with server functions, streaming, type safety and performance
+            in mind.
           </p>
         </section>
 
@@ -103,7 +119,7 @@ function HomePage() {
                 className="rounded-xl border border-slate-700 bg-slate-800/50 p-6 backdrop-blur-lg transition duration-300 hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/10"
               >
                 <div className="mb-4 flex items-center gap-4">
-                  <div className="bg-gradient-primary rounded-full p-3">{feature.icon}</div>
+                  <div className="rounded-full bg-gradient-primary p-3">{feature.icon}</div>
                   <h2 className="mb-0 font-sans text-2xl">{feature.title}</h2>
                 </div>
                 <p className="leading-relaxed text-gray-400">{feature.description}</p>
