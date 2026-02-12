@@ -18,7 +18,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="flex items-center bg-gray-800 p-4 text-white shadow-lg">
+      <header className="z-50 flex items-center bg-gray-800 p-4 text-white shadow-lg">
         <button
           type="button"
           onClick={() => setIsOpen(true)}

@@ -1,6 +1,7 @@
 import interFont from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 import playfairFont from '@fontsource-variable/playfair-display/files/playfair-display-latin-wght-normal.woff2?url';
 
+import { Suspense, lazy } from 'react';
 import { ReactTempus } from 'tempus/react';
 import { TanStackDevtools } from '@tanstack/react-devtools';
 import { HeadContent, Link, Scripts, createRootRoute } from '@tanstack/react-router';
@@ -9,6 +10,8 @@ import appCss from '@/styles/index.css?url';
 import { SmoothScroll } from '@/components/SmoothScroll';
 import Header from '@/components/Header';
 import { Footer } from '@/components/Footer';
+
+const GlobalCanvas = lazy(() => import('@/components/r3f/GlobalCanvas'));
 
 export const Route = createRootRoute({
   head: () => ({
@@ -68,9 +71,15 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <body className="grid min-h-dvh grid-rows-[auto_1fr_auto]">
         <Header />
 
-        <main className="py-10 md:py-20">{children}</main>
+        <main className="z-10 py-10 md:py-20" id="main-content">
+          {children}
+        </main>
 
         <Footer />
+
+        <Suspense fallback={null}>
+          <GlobalCanvas />
+        </Suspense>
 
         <SmoothScroll />
         <ReactTempus patch />
