@@ -8,6 +8,9 @@ import type { LenisProps, LenisRef } from 'lenis/react';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.defaults({
+    markers: process.env.NODE_ENV === 'development',
+  });
   gsap.defaults({ ease: 'none' });
   gsap.ticker.lagSmoothing(0);
   gsap.ticker.remove(gsap.updateRoot);

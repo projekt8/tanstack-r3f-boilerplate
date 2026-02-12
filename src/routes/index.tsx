@@ -1,6 +1,16 @@
 import { Suspense, lazy } from 'react';
 import { createFileRoute } from '@tanstack/react-router';
-import { Route as RouteIcon, Server, Shield, Sparkles, Waves, Zap } from 'lucide-react';
+import {
+  Move3D,
+  MoveIcon,
+  Rocket,
+  Route as RouteIcon,
+  Server,
+  Shield,
+  Sparkles,
+  Waves,
+  Zap,
+} from 'lucide-react';
 import { Container } from '@/components/Container';
 
 const SpheresBackground = lazy(() => import('@/components/r3f/SpheresBackground'));
@@ -9,10 +19,16 @@ export const Route = createFileRoute('/')({ component: HomePage });
 
 const features = [
   {
-    icon: <Zap className="size-8" />,
-    title: 'Powerful Server Functions',
+    icon: <Sparkles className="size-8" />,
+    title: 'Next Generation Ready',
     description:
-      'Write server-side code that seamlessly integrates with your client components. Type-safe, secure, and simple.',
+      'Built from the ground up for modern web applications. Deploy anywhere JavaScript runs.',
+  },
+  {
+    icon: <Shield className="size-8" />,
+    title: 'Strongly Typed Everything',
+    description:
+      'End-to-end type safety from server to client. Catch errors before they reach production.',
   },
   {
     icon: <Server className="size-8" />,
@@ -21,46 +37,37 @@ const features = [
       'Full-document SSR, streaming, and progressive enhancement out of the box. Control exactly what renders where.',
   },
   {
+    icon: <Rocket className="size-8" />,
+    title: 'Optimized for Performance',
+    description: 'Fastest possible performance with zero configuration.',
+  },
+  {
+    icon: <Move3D className="size-8" />,
+    title: 'Immersive 3D Experiences',
+    description: 'Build 3D applications with ease. Powered by React Three Fiber.',
+  },
+  {
+    icon: <MoveIcon className="size-8" />,
+    title: 'GSAP Animations & Smooth Scroll',
+    description: 'Create stunning animations with GSAP, the state of the art animation library.',
+  },
+  {
+    icon: <Waves className="size-8" />,
+    title: 'Full Streaming Support',
+    description:
+      'Stream data from server to client progressively. Perfect for AI applications and real-time updates.',
+  },
+  {
     icon: <RouteIcon className="size-8" />,
     title: 'API Routes',
     description:
       'Build type-safe API endpoints alongside your application. No separate backend needed.',
   },
   {
-    icon: <Shield className="size-8" />,
-    title: 'Strongly Typed Everything',
+    icon: <Zap className="size-8" />,
+    title: 'Powerful Server Functions',
     description:
-      'End-to-end type safety from server to client. Catch errors before they reach production.',
-  },
-  {
-    icon: <Waves className="size-8" />,
-    title: 'Full Streaming Support',
-    description:
-      'Stream data from server to client progressively. Perfect for AI applications and real-time updates.',
-  },
-  {
-    icon: <Sparkles className="size-8" />,
-    title: 'Next Generation Ready',
-    description:
-      'Built from the ground up for modern web applications. Deploy anywhere JavaScript runs.',
-  },
-  {
-    icon: <Shield className="size-8" />,
-    title: 'Strongly Typed Everything',
-    description:
-      'End-to-end type safety from server to client. Catch errors before they reach production.',
-  },
-  {
-    icon: <Waves className="size-8" />,
-    title: 'Full Streaming Support',
-    description:
-      'Stream data from server to client progressively. Perfect for AI applications and real-time updates.',
-  },
-  {
-    icon: <Sparkles className="size-8" />,
-    title: 'Next Generation Ready',
-    description:
-      'Built from the ground up for modern web applications. Deploy anywhere JavaScript runs.',
+      'Write server-side code that seamlessly integrates with your client components. Type-safe, secure, and simple.',
   },
 ];
 
@@ -70,6 +77,7 @@ function HomePage() {
       <Suspense fallback={null}>
         <SpheresBackground />
       </Suspense>
+
       <Container className="relative flex flex-col gap-12">
         <section className="relative mx-auto max-w-5xl text-center">
           <div className="flex items-center justify-center gap-4">
@@ -79,11 +87,11 @@ function HomePage() {
             </h1>
           </div>
           <p className="mb-4 text-2xl md:text-3xl">
-            The framework for next generation web experiences
+            The boilerplate for next generation web experiences
           </p>
           <p className="text-gray-300">
-            Full-stack framework powered by TanStack Router for React and Solid. Build modern
-            applications with server functions, streaming, and type safety.
+            Full-stack framework powered by TanStack Start for React. Build modern applications with
+            server functions, streaming, and type safety.
           </p>
         </section>
 

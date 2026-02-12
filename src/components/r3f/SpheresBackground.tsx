@@ -4,7 +4,7 @@ import { useFrame } from '@react-three/fiber';
 import { Environment, Instance, Instances, PerspectiveCamera, View } from '@react-three/drei';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import type { InstancedMesh, Mesh, Object3D } from 'three';
+import type { InstancedMesh, Object3D } from 'three';
 
 const particles = Array.from({ length: 150 }, () => ({
   factor: MathUtils.randInt(20, 100),
@@ -15,31 +15,13 @@ const particles = Array.from({ length: 150 }, () => ({
 }));
 
 export default function SpheresBackground() {
-  const ref = useRef(null!);
-  const groupRef = useRef<Mesh>(null!);
-
-  useGSAP(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: '#main-content',
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: 1,
-      },
-    });
-
-    tl.to(groupRef.current?.scale, { x: 0.75, y: 0.75, z: 0.75 });
-    tl.to(groupRef.current?.position, { y: -5 }, '<');
-  });
-
   return (
-    <View ref={ref} className="absolute inset-0 h-full w-full">
+    <View className="fixed inset-0 h-full w-full">
       <PerspectiveCamera makeDefault fov={45} position={[0, 5, 35]} />
       <fog attach="fog" args={['#ff6345', 25, -5]} />
       <ambientLight intensity={1} />
-      <mesh ref={groupRef}>
-        <Bubbles />
-      </mesh>
+
+      <Bubbles />
 
       <Environment preset="city" />
     </View>
@@ -47,24 +29,30 @@ export default function SpheresBackground() {
 }
 
 function Bubbles() {
-  const ref = useRef<InstancedMesh>(null!);
-  useFrame((state, delta) => {
-    ref.current.rotation.y = MathUtils.damp(
-      ref.current.rotation.y,
-      (-state.mouse.x * Math.PI) / 20,
-      2.5,
-      delta
-    );
+  const meshRef = useRef<InstancedMesh>(null!);
 
-    ref.current.rotation.x = MathUtils.damp(
-      ref.current.rotation.x,
-      (-state.mouse.y * Math.PI) / 25,
-      2.5,
-      delta
-    );
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#main-container',
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 1.5,
+      },
+    });
+
+    tl.to(meshRef.current.scale, { x: 0.75, y: 0.75, z: 0.75 });
+    tl.to(meshRef.current.position, { y: -5 }, '<');
   });
+
   return (
-    <Instances limit={particles.length} ref={ref} castShadow receiveShadow position={[0, 2.5, 0]}>
+    <Instances
+      ref={meshRef}
+      limit={particles.length}
+      castShadow
+      receiveShadow
+      position={[0, 2.5, 0]}
+    >
       <sphereGeometry args={[0.45, 64, 64]} />
       <meshStandardMaterial roughness={1} color="#28394a" />
       {particles.map((data, i) => (

@@ -2,7 +2,6 @@ import interFont from '@fontsource-variable/inter/files/inter-latin-wght-normal.
 import playfairFont from '@fontsource-variable/playfair-display/files/playfair-display-latin-wght-normal.woff2?url';
 
 import { Suspense, lazy } from 'react';
-import { ReactTempus } from 'tempus/react';
 import { TanStackDevtools } from '@tanstack/react-devtools';
 import { HeadContent, Link, Scripts, createRootRoute } from '@tanstack/react-router';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
@@ -71,7 +70,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <body className="grid min-h-dvh grid-rows-[auto_1fr_auto]">
         <Header />
 
-        <main className="z-10 py-10 md:py-20" id="main-content">
+        <main className="z-10 py-10 md:py-20" id="main-container">
           {children}
         </main>
 
@@ -82,7 +81,6 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         </Suspense>
 
         <SmoothScroll />
-        <ReactTempus patch />
 
         <TanStackDevtools
           config={{
