@@ -19,7 +19,7 @@ export const Header = () => {
           </li> */}
           <li>
             <a
-              href="https://github.com/projekt8/react-three-fiber-tanstack-boilerplate"
+              href="https://github.com/projekt8/tanstack-r3f-boilerplate"
               target="_blank"
               rel="noreferrer"
               className={cn([
