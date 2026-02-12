@@ -72,12 +72,10 @@
   }
 }
 
-@layer utilities {
-  .bg-gradient-primary {
-    @apply bg-linear-to-br from-primary to-accent;
-  }
+@utility bg-gradient-primary {
+  @apply bg-linear-to-br from-primary to-accent;
+}
 
-  .text-gradient-primary {
-    @apply bg-linear-to-br from-primary to-accent bg-clip-text text-transparent;
-  }
+@utility text-gradient-primary {
+  @apply bg-linear-to-br from-primary to-accent bg-clip-text text-transparent text-shadow-none;
 }

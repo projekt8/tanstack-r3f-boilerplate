@@ -1,173 +1,39 @@
 import { Link } from '@tanstack/react-router';
-import {
-  ChevronDown,
-  ChevronRight,
-  Home,
-  Menu,
-  Network,
-  SquareFunction,
-  StickyNote,
-  X,
-} from 'lucide-react';
-import { useState } from 'react';
-import Logo from '@/assets/logo.svg?react';
+import Logo from '@/assets/tanstack-r3f-logo.svg?react';
+import IconGitHub from '@/assets/github.svg?react';
+import { cn } from '@/lib/utils';
 
-export default function Header() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [groupedExpanded, setGroupedExpanded] = useState<Record<string, boolean>>({});
-
+export const Header = () => {
   return (
-    <>
-      <header className="z-50 flex items-center bg-gray-800 p-4 text-white shadow-lg">
-        <button
-          type="button"
-          onClick={() => setIsOpen(true)}
-          className="rounded-lg p-2 transition-colors hover:bg-gray-700"
-          aria-label="Open menu"
-        >
-          <Menu size={24} />
-        </button>
-        <Link to="/" className="ml-4" aria-label="TANSTACK">
-          <Logo className="h-10 w-auto" />
-        </Link>
-      </header>
-
-      <aside
-        className={`fixed top-0 left-0 z-50 flex h-full w-80 transform flex-col bg-gray-900 text-white shadow-2xl transition-transform duration-300 ease-in-out ${
-          isOpen ? 'translate-x-0' : '-translate-x-full'
-        }`}
-      >
-        <div className="flex items-center justify-between border-b border-gray-700 p-4">
-          <h2 className="text-xl font-bold">Navigation</h2>
-          <button
-            type="button"
-            onClick={() => setIsOpen(false)}
-            className="rounded-lg p-2 transition-colors hover:bg-gray-800"
-            aria-label="Close menu"
-          >
-            <X size={24} />
-          </button>
-        </div>
-
-        <nav className="flex-1 overflow-y-auto p-4">
-          <Link
-            to="/"
-            onClick={() => setIsOpen(false)}
-            className="mb-2 flex items-center gap-3 rounded-lg p-3 transition-colors hover:bg-gray-800"
-            activeProps={{
-              className:
-                'flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
-            }}
-          >
-            <Home size={20} />
-            <span className="font-medium">Home</span>
-          </Link>
-
-          {/* Demo Links Start */}
-
-          <Link
-            to="/demo/start/server-funcs"
-            onClick={() => setIsOpen(false)}
-            className="mb-2 flex items-center gap-3 rounded-lg p-3 transition-colors hover:bg-gray-800"
-            activeProps={{
-              className:
-                'flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
-            }}
-          >
-            <SquareFunction size={20} />
-            <span className="font-medium">Start - Server Functions</span>
-          </Link>
-
-          <Link
-            to="/demo/start/api-request"
-            onClick={() => setIsOpen(false)}
-            className="mb-2 flex items-center gap-3 rounded-lg p-3 transition-colors hover:bg-gray-800"
-            activeProps={{
-              className:
-                'flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
-            }}
-          >
-            <Network size={20} />
-            <span className="font-medium">Start - API Request</span>
-          </Link>
-
-          <div className="flex flex-row justify-between">
-            <Link
-              to="/demo/start/ssr"
-              onClick={() => setIsOpen(false)}
-              className="mb-2 flex flex-1 items-center gap-3 rounded-lg p-3 transition-colors hover:bg-gray-800"
-              activeProps={{
-                className:
-                  'flex-1 flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
-              }}
+    <header className="z-50 flex items-center justify-between bg-black px-4 py-3 md:px-8 md:py-4">
+      <Link to="/" aria-label="TANSTACK">
+        <Logo className="h-4 w-auto md:h-5" />
+      </Link>
+      <nav>
+        <ul className="flex items-center gap-8">
+          {/* <li className="hidden sm:block">
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/examples/responsive-3d-elements">Examples</Link>
+          </li> */}
+          <li>
+            <a
+              href="https://github.com/projekt8/react-three-fiber-tanstack-boilerplate"
+              target="_blank"
+              rel="noreferrer"
+              className={cn([
+                'relative z-10 inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-white p-1 font-medium text-black transition-all duration-300 sm:p-1.5',
+                'hover:text-white focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50',
+                'after:absolute after:inset-0 after:-z-1 after:origin-left after:-translate-x-[105%] after:scale-105 after:rounded-full after:bg-gradient-primary after:transition-all after:duration-300 after:content-[""] hover:after:translate-x-0',
+              ])}
             >
-              <StickyNote size={20} />
-              <span className="font-medium">Start - SSR Demos</span>
-            </Link>
-            <button
-              type="button"
-              className="rounded-lg p-2 transition-colors hover:bg-gray-800"
-              onClick={() =>
-                setGroupedExpanded((prev) => ({
-                  ...prev,
-                  StartSSRDemo: !prev.StartSSRDemo,
-                }))
-              }
-              aria-label={groupedExpanded.StartSSRDemo ? 'Collapse' : 'Expand'}
-            >
-              {groupedExpanded.StartSSRDemo ? (
-                <ChevronDown size={20} />
-              ) : (
-                <ChevronRight size={20} />
-              )}
-            </button>
-          </div>
-          {groupedExpanded.StartSSRDemo && (
-            <div className="ml-4 flex flex-col">
-              <Link
-                to="/demo/start/ssr/spa-mode"
-                onClick={() => setIsOpen(false)}
-                className="mb-2 flex items-center gap-3 rounded-lg p-3 transition-colors hover:bg-gray-800"
-                activeProps={{
-                  className:
-                    'flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
-                }}
-              >
-                <StickyNote size={20} />
-                <span className="font-medium">SPA Mode</span>
-              </Link>
-
-              <Link
-                to="/demo/start/ssr/full-ssr"
-                onClick={() => setIsOpen(false)}
-                className="mb-2 flex items-center gap-3 rounded-lg p-3 transition-colors hover:bg-gray-800"
-                activeProps={{
-                  className:
-                    'flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
-                }}
-              >
-                <StickyNote size={20} />
-                <span className="font-medium">Full SSR</span>
-              </Link>
-
-              <Link
-                to="/demo/start/ssr/data-only"
-                onClick={() => setIsOpen(false)}
-                className="mb-2 flex items-center gap-3 rounded-lg p-3 transition-colors hover:bg-gray-800"
-                activeProps={{
-                  className:
-                    'flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
-                }}
-              >
-                <StickyNote size={20} />
-                <span className="font-medium">Data Only</span>
-              </Link>
-            </div>
-          )}
-
-          {/* Demo Links End */}
-        </nav>
-      </aside>
-    </>
+              <IconGitHub className="size-5 sm:size-6" />
+              <span className="mr-1 text-sm sm:mr-2 sm:text-base">GitHub</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
   );
-}
+};
