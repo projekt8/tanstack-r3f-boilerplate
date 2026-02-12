@@ -1,13 +1,13 @@
 import interFont from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 import playfairFont from '@fontsource-variable/playfair-display/files/playfair-display-latin-wght-normal.woff2?url';
 
-import { Suspense, lazy } from 'react';
+import { lazy } from 'react';
 import { TanStackDevtools } from '@tanstack/react-devtools';
-import { HeadContent, Link, Scripts, createRootRoute } from '@tanstack/react-router';
+import { ClientOnly, HeadContent, Link, Scripts, createRootRoute } from '@tanstack/react-router';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import appCss from '@/styles/index.css?url';
 import { SmoothScroll } from '@/components/SmoothScroll';
-import Header from '@/components/Header';
+import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 
 const GlobalCanvas = lazy(() => import('@/components/r3f/GlobalCanvas'));
@@ -76,9 +76,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 
         <Footer />
 
-        <Suspense fallback={null}>
+        <ClientOnly fallback={null}>
           <GlobalCanvas />
-        </Suspense>
+        </ClientOnly>
 
         <SmoothScroll />
 
