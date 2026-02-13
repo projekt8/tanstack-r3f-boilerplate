@@ -26,7 +26,7 @@ function HomePage() {
       </CanvasPortal>
 
       <Container className="relative flex flex-col gap-12">
-        <section className="relative mx-auto max-w-2xl text-center">
+        <section className="relative mx-auto max-w-3xl text-center">
           <div className="flex items-center justify-center gap-4 text-shadow-black/30 text-shadow-lg">
             <h1 className="uppercase">
               Tanstack
@@ -35,13 +35,14 @@ function HomePage() {
               <small>more</small>
             </h1>
           </div>
-          <p className="mb-4 text-xl md:text-3xl">
+          <p className="mb-4 text-xl font-medium md:text-2xl">
             A boilerplate for next generation web experiences
           </p>
           <p className="text-neutral-300">
-            Full-stack framework powered by TanStack Start, enhanced with React Three Fiber for
-            immersive 3D web experiences and GSAP for stunning animations. Built with performance in
-            mind.
+            Full-stack framework powered by <strong>TanStack Start</strong>, enhanced with{' '}
+            <strong>React Three Fiber</strong> for immersive 3D experiences, <strong>GSAP</strong>{' '}
+            for stunning animations, <strong>Lenis</strong> for smooth scrolling, and{' '}
+            <strong>Tempus</strong> for high-performance frame synchronization.
           </p>
         </section>
 
