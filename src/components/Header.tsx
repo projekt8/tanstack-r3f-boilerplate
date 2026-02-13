@@ -2,20 +2,28 @@ import { Link } from '@tanstack/react-router';
 import Logo from '@/assets/tanstack-r3f-logo.svg?react';
 import IconGitHub from '@/assets/github.svg?react';
 import { cn } from '@/lib/utils';
+// import { NavLink } from '@/components/NavLink';
+// import { HomeIcon, RocketIcon } from 'lucide-react';
 
 export const Header = () => {
   return (
-    <header className="z-50 flex items-center justify-between bg-black px-4 py-3 md:px-8 md:py-4">
+    <header className="z-50 flex items-center justify-between bg-black px-4 py-3 font-medium md:px-8 md:py-4">
       <Link to="/" aria-label="TANSTACK">
         <Logo className="h-4 w-auto md:h-5" />
       </Link>
       <nav>
-        <ul className="flex items-center gap-8">
+        <ul className="flex items-center gap-6 sm:gap-8">
           {/* <li className="hidden sm:block">
-            <Link to="/">Home</Link>
+            <NavLink to="/">
+              <HomeIcon className="size-5" />
+              Home
+            </NavLink>
           </li>
           <li>
-            <Link to="/examples/responsive-3d-elements">Examples</Link>
+            <NavLink to="/examples/responsive-3d-elements">
+              <RocketIcon className="size-5" />
+              Example
+            </NavLink>
           </li> */}
           <li>
             <a
@@ -29,7 +37,14 @@ export const Header = () => {
               ])}
             >
               <IconGitHub className="size-5 sm:size-6" />
-              <span className="mr-1 text-sm sm:mr-2 sm:text-base">GitHub</span>
+              <span
+                className={cn([
+                  'mr-1 text-sm sm:mr-2 sm:text-base',
+                  // 'sr-only sm:not-sr-only'
+                ])}
+              >
+                GitHub
+              </span>
             </a>
           </li>
         </ul>

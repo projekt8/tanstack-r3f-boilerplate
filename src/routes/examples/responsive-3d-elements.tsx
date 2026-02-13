@@ -10,60 +10,65 @@ export const Route = createFileRoute('/examples/responsive-3d-elements')({ compo
 
 function Page() {
   return (
-    <div className="flex flex-col gap-20">
-      <section className="relative mx-auto max-w-5xl text-center">
+    <Container className="flex flex-col gap-25">
+      <section className="relative mx-auto max-w-3xl text-center">
         <div className="flex items-center justify-center gap-4 text-shadow-black/30 text-shadow-lg">
           <h1 className="uppercase">
-            Tanstack
-            <br /> Three.js
+            Responsive <br /> HTML
             <span className="block text-gradient-primary text-8xl text-shadow-none">&</span>
-            <small>more</small>
+            Three.js <br /> Scenes
           </h1>
         </div>
-        <p className="mb-4 text-2xl md:text-3xl">
-          A boilerplate for next generation web experiences
+        <p className="mb-4 text-xl font-medium md:text-2xl">
+          Seamlessly integrate Three.js into your document flow
         </p>
-        <p className="text-gray-300">
-          Full-stack framework powered by TanStack Start, progressively enhanced with Three.js
-          (React Three Fiber) for immersive 3D web experiences and GSAP for stunning animations.
+        <p className="text-neutral-300">
+          Unlock the power of <strong>CanvasPortal</strong> to blend immersive 3D content with
+          standard HTML layouts. By leveraging a single <strong>GlobalCanvas</strong>, all scenes
+          are rendered through a shared WebGL context, ensuring optimal performance and resource
+          efficiency while maintaining pixel-perfect responsiveness and GSAP-driven scroll
+          animations.
         </p>
       </section>
 
-      <Container className="grid grid-cols-1 gap-10 md:grid-cols-2">
-        <section>
+      <section className="grid grid-cols-1 gap-10 md:grid-cols-2">
+        <section className="flex flex-col justify-center">
           <div className="flex gap-4 text-shadow-black/30 text-shadow-lg">
-            <h1>
-              Lorem <span className="text-gradient-primary">ipsum</span> dolor sit
-            </h1>
+            <h2>
+              <span className="text-gradient-primary">Responsive</span> <br /> Scenes
+            </h2>
           </div>
           <p className="text-gray-300">
-            Full-stack framework powered by TanStack Start, progressively enhanced with Three.js
-            (React Three Fiber) for immersive 3D web experiences and GSAP for stunning animations.
+            Use <strong>CanvasPortal</strong> to render Three.js scenes directly within your HTML
+            layout. 3D elements respect the document flow, making them natively responsive and easy
+            to position using standard layout tools like Tailwind CSS.
           </p>
           <p className="text-gray-300">
-            Build modern applications with server functions, streaming, type safety and performance
-            in mind.
+            Orchestrate animations with <strong>GSAP ScrollTrigger</strong> by linking 3D properties
+            to DOM events. In this example, the sphere&apos;s scale and color are driven by its
+            container&apos;s scroll position.
           </p>
         </section>
         <CanvasPortal id="wobble-sphere-trigger" camera environment lights loader bounds>
           <WobbleSphere trigger="#wobble-sphere-trigger" />
         </CanvasPortal>
-      </Container>
+      </section>
 
-      <Container className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-4">
-        <section>
+      <section className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-4">
+        <section className="flex flex-col justify-center">
           <div className="flex gap-4 text-shadow-black/30 text-shadow-lg">
-            <h1>
-              Lorem <span className="text-gradient-primary">ipsum</span> dolor sit
-            </h1>
+            <h2>
+              Interactive <br /> <span className="text-gradient-primary">Viewports</span>
+            </h2>
           </div>
           <p className="text-gray-300">
-            Full-stack framework powered by TanStack Start, progressively enhanced with Three.js
-            (React Three Fiber) for immersive 3D web experiences and GSAP for stunning animations.
+            Each <strong>CanvasPortal</strong> can be configured with its own camera, lighting, and
+            environment settings. Enable <strong>orbitControls</strong> to allow users to
+            interactively explore 3D models within the flow of your article or landing page.
           </p>
           <p className="text-gray-300">
-            Build modern applications with server functions, streaming, type safety and performance
-            in mind.
+            The <strong>bounds</strong> property automatically centers and scales your 3D content to
+            fit its DOM container, ensuring pixel-perfect alignment across different screen sizes.
           </p>
         </section>
 
@@ -88,7 +93,47 @@ function Page() {
             />
           </RoundedBox>
         </CanvasPortal>
-      </Container>
-    </div>
+      </section>
+
+      <section className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-4">
+        <section className="flex flex-col justify-center">
+          <div className="flex gap-4 text-shadow-black/30 text-shadow-lg">
+            <h2>
+              Interactive <br /> <span className="text-gradient-primary">Viewports</span>
+            </h2>
+          </div>
+          <p className="text-gray-300">
+            Each <strong>CanvasPortal</strong> can be configured with its own camera, lighting, and
+            environment settings. Enable <strong>orbitControls</strong> to allow users to
+            interactively explore 3D models within the flow of your article or landing page.
+          </p>
+          <p className="text-gray-300">
+            The <strong>bounds</strong> property automatically centers and scales your 3D content to
+            fit its DOM container, ensuring pixel-perfect alignment across different screen sizes.
+          </p>
+        </section>
+
+        <CanvasPortal
+          camera
+          environment
+          lights
+          loader
+          orbitControls
+          bounds={{
+            margin: 1.8,
+          }}
+        >
+          <RoundedBox position={[0, 0, 0]} args={[1, 1, 1]}>
+            <meshPhysicalMaterial
+              color="#ff6345"
+              envMapIntensity={0.3}
+              clearcoat={0.1}
+              clearcoatRoughness={0.1}
+              metalness={0.1}
+            />
+          </RoundedBox>
+        </CanvasPortal>
+      </section>
+    </Container>
   );
 }

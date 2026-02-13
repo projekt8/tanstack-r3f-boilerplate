@@ -76,7 +76,7 @@ export const FeatureCards = () => {
         >
           <div className="mb-3 flex items-center gap-4">
             <div className="rounded-full bg-gradient-primary p-3">{feature.icon}</div>
-            <h2 className="mb-0 font-sans text-xl leading-tight">{feature.title}</h2>
+            <h2 className="mb-0 font-sans text-xl leading-tight capitalize">{feature.title}</h2>
           </div>
           <p className="leading-relaxed text-neutral-400">{feature.description}</p>
         </div>

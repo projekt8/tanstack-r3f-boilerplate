@@ -54,11 +54,11 @@
   }
 
   h1 {
-    @apply mb-6 text-5xl md:text-7xl;
+    @apply mb-6 text-5xl uppercase md:text-7xl;
   }
 
   h2 {
-    @apply mb-6 text-4xl md:text-6xl;
+    @apply mb-6 text-4xl uppercase md:text-6xl;
   }
 
   h3 {
