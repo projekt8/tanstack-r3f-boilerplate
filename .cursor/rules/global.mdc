@@ -1,0 +1,16 @@
+---
+description: Global AI Rules
+globs: *
+---
+
+# Cursor Rules
+
+You **MUST** read and follow the project context and rules defined in `AGENTS.md`.
+
+This file (`AGENTS.md`) is the single source of truth for:
+
+- Tech Stack Versions (React 19, Tailwind v4)
+- Coding Standards
+- Architecture Patterns
+
+[Read AGENTS.md](AGENTS.md)

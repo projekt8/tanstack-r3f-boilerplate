@@ -42,12 +42,35 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## 📂 Project Structure
 
-- **`src/routes`**: File-based routing handled by TanStack Router.
-  - `__root.tsx`: The root layout component.
-  - `index.tsx`: The main landing page.
-- **`src/components`**: Reusable UI components.
-  - **`r3f`**: Components specifically for React Three Fiber (3D scenes).
-- **`src/styles`**: Global styles and Tailwind configuration.
+The project follows a standard Vite + React application structure with specific conventions for TanStack Router and React Three Fiber.
+
+```text
+├── 📂 src
+│   ├── 📂 assets          # Static assets (images, SVGs)
+│   ├── 📂 components      # Reusable UI components
+│   │   ├── 📂 r3f         # React Three Fiber 3D components
+│   │   └── ...            # General UI components (Header, Footer, etc.)
+│   ├── 📂 data            # Static data files
+│   ├── 📂 lib             # Utilities and helpers
+│   ├── 📂 routes          # TanStack Router file-based system
+│   │   ├── __root.tsx     # Root layout wrapper
+│   │   ├── index.tsx      # Landing page
+│   │   └── 📂 examples    # Example feature routes
+│   ├── 📂 styles          # Global styles & Tailwind config
+│   │   ├── index.css      # Main stylesheet
+│   │   └── ...
+│   ├── router.tsx         # Router instance configuration
+│   └── routeTree.gen.ts   # Auto-generated route definitions (DO NOT EDIT)
+├── .nvmrc                 # Node version configuration
+├── package.json           # Project dependencies and scripts
+└── vite.config.ts         # Vite configuration
+```
+
+### Key Directories
+
+- **`src/routes`**: The heart of the application's file-based routing.
+- **`src/components/r3f`**: Dedicated folder for 3D-specific components to keep them separate from standard DOM UI.
+- **`src/styles`**: Contains `index.css` (Tailwind v4 setup), `fonts.css`, and `lenis.css` (smooth scrolling).
 
 ## 📜 Scripts
 
