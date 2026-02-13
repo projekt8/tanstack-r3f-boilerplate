@@ -12,6 +12,16 @@
   --color-secondary: #2c3f52;
   --color-accent: #e64e76;
 
+  --color-neutral-100: var(--color-slate-100);
+  --color-neutral-200: var(--color-slate-200);
+  --color-neutral-300: var(--color-slate-300);
+  --color-neutral-400: var(--color-slate-400);
+  --color-neutral-500: var(--color-slate-500);
+  --color-neutral-600: var(--color-slate-600);
+  --color-neutral-700: var(--color-slate-700);
+  --color-neutral-800: var(--color-slate-800);
+  --color-neutral-900: var(--color-slate-900);
+
   --color-black: #0f1b27;
   --color-white: #f5fbff;
   --color-success: var(--color-green-400);
@@ -40,7 +50,7 @@
   h4,
   h5,
   h6 {
-    @apply mb-4 font-serif leading-none font-bold;
+    @apply mb-4 font-serif leading-[110%] font-bold;
   }
 
   h1 {
