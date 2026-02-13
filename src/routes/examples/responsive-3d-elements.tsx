@@ -1,10 +1,8 @@
-import { lazy } from 'react';
 import { createFileRoute } from '@tanstack/react-router';
 import { RoundedBox } from '@react-three/drei';
 import { Container } from '@/components/Container';
 import CanvasPortal from '@/components/r3f/CanvasPortal';
-
-const WobbleSphere = lazy(() => import('@/components/r3f/WobbleSphere'));
+import WobbleSphere from '@/components/r3f/WobbleSphere';
 
 export const Route = createFileRoute('/examples/responsive-3d-elements')({ component: Page });
 

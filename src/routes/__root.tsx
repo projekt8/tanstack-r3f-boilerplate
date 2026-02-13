@@ -70,7 +70,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <body className="grid min-h-dvh grid-rows-[auto_1fr_auto]">
         <Header />
 
-        <main className="z-10 py-10 md:py-25" id="main-container">
+        <main className="z-10 py-16 pt-25 md:py-25 md:pt-36" id="main-container">
           {children}
         </main>
 
