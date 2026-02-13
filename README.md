@@ -1,4 +1,4 @@
-# React Three Fiber + TanStack Boilerplate
+# TanStack Start + React Three Fiber Boilerplate
 
 A modern, high-performance boilerplate built for the next generation of web experiences. Combining the power of **TanStack Start** for full-stack capabilities, **React Three Fiber** for immersive 3D content, and **GSAP** for award-winning animations.
 
@@ -17,7 +17,7 @@ A modern, high-performance boilerplate built for the next generation of web expe
 
 ### Prerequisites
 
-- Node.js (v18 or higher recommended)
+- Node.js (v24.8.0 or higher recommended)
 - npm, pnpm, or bun
 
 ### Installation
