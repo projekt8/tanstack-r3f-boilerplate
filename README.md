@@ -72,6 +72,40 @@ The project follows a standard Vite + React application structure with specific 
 - **`src/components/r3f`**: Dedicated folder for 3D-specific components to keep them separate from standard DOM UI.
 - **`src/styles`**: Contains `index.css` (Tailwind v4 setup), `fonts.css`, and `lenis.css` (smooth scrolling).
 
+## 🧊 3D Asset Workflow
+
+This boilerplate includes a powerful automated pipeline for optimizing 3D models and generating React components using `gltfjsx`.
+
+### How to use:
+
+1. **Place your raw `.glb` files** in `src/assets/3d`.
+2. **Run the optimization script**:
+
+   ```bash
+   npm run optimize:models
+   ```
+
+3. **What happens next:**
+   - **Optimization**: Files are compressed (Draco), textures are resized (to 1024px), and instances are created for repeated geometry.
+   - **Output**: Optimized `.glb` files are saved to `public/assets/3d`.
+   - **Components**: TypeScript-ready React components are generated in `src/components/r3f`.
+   - **Auto-Fixes**: The script automatically fixes paths to point to `/assets/3d/` and resolves common TypeScript errors in the generated code.
+
+4. **Use in your app**:
+
+   ```tsx
+   import { Canvas } from '@react-three/fiber';
+   import { ModelComponentName } from '@/components/r3f/ModelComponentName';
+
+   export default function Scene() {
+     return (
+       <Canvas>
+         <ModelComponentName />
+       </Canvas>
+     );
+   }
+   ```
+
 ## 📜 Scripts
 
 - `npm run dev`: Starts the development server.
@@ -81,6 +115,7 @@ The project follows a standard Vite + React application structure with specific 
 - `npm run lint`: Runs ESLint.
 - `npm run format`: Runs Prettier to format code.
 - `npm run check`: checks for formatting and linting issues.
+- `npm run optimize:models`: Optimizes 3D models and generates R3F components.
 
 ## 🤝 Contributing
 
