@@ -18,6 +18,7 @@ import type {
   ViewProps,
 } from '@react-three/drei';
 import { cn } from '@/lib/utils';
+import { Loader } from '@/components/r3f/Loader';
 
 const environmentTexture = import('@pmndrs/assets/hdri/warehouse.exr').then(
   (module) => module.default
@@ -54,17 +55,13 @@ const CanvasPortal = ({
       className={cn(
         'relative flex h-full min-h-[400px] w-full items-center justify-center',
         fullscreen && 'fixed inset-0 h-full w-full',
-        loader &&
-          'before:absolute before:size-10 before:rounded-full before:border-3 before:border-white/20 before:opacity-100 before:transition-opacity before:duration-200 before:content-[""]',
-        loader &&
-          'after:absolute after:size-10 after:animate-spin after:rounded-full after:border-t-3 after:border-primary after:opacity-100 after:transition-opacity after:duration-200 after:content-[""]',
-        loader && 'before:opacity-0 after:opacity-0',
         orbitControls && 'cursor-grab active:cursor-grabbing',
         className
       )}
       {...props}
     >
       <Suspense fallback={null}>
+        {loader && <Loader />}
         <View className="absolute inset-0 z-10 h-full w-full" {...view}>
           {lights && (
             <>
@@ -72,7 +69,6 @@ const CanvasPortal = ({
               <pointLight position={[0, 0, -15]} intensity={1} color="#ff6345" />
             </>
           )}
-
           {environment && (
             <Environment
               files={suspend(environmentTexture) as string}
@@ -84,11 +80,9 @@ const CanvasPortal = ({
             <PerspectiveCamera
               makeDefault
               fov={30}
-              position={[3, 2.5, 5]}
+              position={[0, 0.5, 10]}
               {...(typeof camera === 'object' ? camera : {})}
-            >
-              {children}
-            </PerspectiveCamera>
+            />
           )}
 
           {bounds ? (
@@ -107,7 +101,11 @@ const CanvasPortal = ({
           )}
 
           {shadows && (
-            <ContactShadows opacity={0.5} {...(typeof shadows === 'object' ? shadows : {})} />
+            <ContactShadows
+              opacity={0.3}
+              blur={1.5}
+              {...(typeof shadows === 'object' ? shadows : {})}
+            />
           )}
 
           {orbitControls && (
@@ -116,8 +114,6 @@ const CanvasPortal = ({
               enablePan={false}
               enableZoom={false}
               maxPolarAngle={Math.PI / 2}
-              autoRotate
-              autoRotateSpeed={-1}
               {...(typeof orbitControls === 'object' ? orbitControls : {})}
             />
           )}

@@ -76,54 +76,20 @@ function Page() {
           camera
           environment
           lights
+          shadows
           loader
-          orbitControls
+          orbitControls={{
+            autoRotate: true,
+            autoRotateSpeed: -2,
+            minPolarAngle: Math.PI / 2,
+            maxPolarAngle: Math.PI / 2,
+          }}
           bounds={{
             margin: 1.8,
           }}
           className="md:order-first"
         >
-          <RoundedBox position={[0, 0, 0]} args={[1, 1, 1]}>
-            <meshPhysicalMaterial
-              color="#ff6345"
-              envMapIntensity={0.3}
-              clearcoat={0.1}
-              clearcoatRoughness={0.1}
-              metalness={0.1}
-            />
-          </RoundedBox>
-        </CanvasPortal>
-      </section>
-
-      <section className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-4">
-        <section className="flex flex-col justify-center">
-          <div className="flex gap-4 text-shadow-black/30 text-shadow-lg">
-            <h2>
-              Interactive <br /> <span className="text-gradient-primary">Viewports</span>
-            </h2>
-          </div>
-          <p className="text-gray-300">
-            Each <strong>CanvasPortal</strong> can be configured with its own camera, lighting, and
-            environment settings. Enable <strong>orbitControls</strong> to allow users to
-            interactively explore 3D models within the flow of your article or landing page.
-          </p>
-          <p className="text-gray-300">
-            The <strong>bounds</strong> property automatically centers and scales your 3D content to
-            fit its DOM container, ensuring pixel-perfect alignment across different screen sizes.
-          </p>
-        </section>
-
-        <CanvasPortal
-          camera
-          environment
-          lights
-          loader
-          orbitControls
-          bounds={{
-            margin: 1.8,
-          }}
-        >
-          <RoundedBox position={[0, 0, 0]} args={[1, 1, 1]}>
+          <RoundedBox position={[0, 0.7, 0]} args={[1, 1, 1]}>
             <meshPhysicalMaterial
               color="#ff6345"
               envMapIntensity={0.3}
