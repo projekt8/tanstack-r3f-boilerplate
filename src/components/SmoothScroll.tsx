@@ -55,7 +55,7 @@ export function SmoothScroll({ children, ...props }: Omit<LenisProps, 'autoRaf' 
       root
       ref={lenisRef}
       autoRaf={false} // Managed by useTempus
-      options={{ lerp: 0.1, duration: 1, smoothWheel: true }}
+      options={{ lerp: 0.1, duration: 1, smoothWheel: true, syncTouch: true }}
       {...props}
     >
       <LenisScrollTriggerSync />
