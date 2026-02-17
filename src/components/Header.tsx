@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from '@tanstack/react-router';
 import { useLenis } from 'lenis/react';
-import { HomeIcon, MenuIcon, RocketIcon } from 'lucide-react';
+import { HomeIcon, MenuIcon, RocketIcon, SparklesIcon } from 'lucide-react';
 import Logo from '@/assets/tanstack-r3f-logo.svg?react';
 import IconGitHub from '@/assets/github.svg?react';
 import { cn } from '@/lib/utils';
@@ -66,7 +66,7 @@ export const Header = () => {
           open ? 'translate-x-0' : '-translate-x-[105%]'
         )}
       >
-        <ul className="flex h-full w-full flex-col gap-6 bg-black/50 px-6 py-3 pt-25! sm:max-w-xs md:px-8 md:py-4">
+        <ul className="flex h-full w-full flex-col gap-4 bg-black/50 px-6 py-3 pt-25! sm:max-w-xs md:px-8 md:py-4">
           <li>
             <NavLink to="/">
               <span className="rounded-full bg-gradient-primary p-2">
@@ -75,7 +75,7 @@ export const Header = () => {
               Home
             </NavLink>
           </li>
-          <li className="mt-8 -mb-2 font-bold uppercase">Examples</li>
+          <li className="mt-8 -mb-1 font-bold uppercase">Examples</li>
           <li>
             <NavLink to="/examples/responsive-3d-elements">
               <span className="rounded-full bg-gradient-primary p-2">
@@ -84,7 +84,15 @@ export const Header = () => {
               Responsive Scenes
             </NavLink>
           </li>
-          <li className="font-normal italic opacity-80">More coming soon...</li>
+          <li>
+            <NavLink to="/examples/custom-glsl-shader">
+              <span className="rounded-full bg-gradient-primary p-2">
+                <SparklesIcon className="size-5" />
+              </span>
+              Custom GLSL Shader
+            </NavLink>
+          </li>
+          <li className="mt-4 font-normal italic opacity-80">more coming soon...</li>
           {/* <li>
             <NavLink to="/examples/responsive-3d-elements">
               <span className="rounded-full bg-gradient-primary p-2">
