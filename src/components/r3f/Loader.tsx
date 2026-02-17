@@ -17,7 +17,7 @@ export const Loader = ({ className, ...props }: HTMLAttributes<HTMLDivElement>) 
   return (
     <div
       className={cn(
-        'absolute inset-0 z-10 flex h-full w-full items-center justify-center rounded-3xl bg-black transition-opacity duration-200',
+        'absolute inset-0 z-10 flex h-full w-full items-center justify-center rounded-3xl transition-opacity duration-200',
         loaded && 'pointer-events-none opacity-0',
         className
       )}
