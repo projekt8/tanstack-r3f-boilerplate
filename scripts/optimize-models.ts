@@ -14,7 +14,7 @@ interface OptimizeOptions {
  */
 program
   .option('-i, --input <path>', 'Input folder for raw GLB files', 'src/assets/3d')
-  .option('-o, --output <path>', 'Output folder for optimized GLB files', 'public/assets/3d')
+  .option('-o, --output <path>', 'Output folder for optimized GLB files', 'src/assets/3d')
   .option('-j, --jsx <path>', 'Output folder for React components', 'src/components/r3f')
   .parse(process.argv);
 
@@ -33,11 +33,12 @@ const getMB = (filePath: string): string => {
 
 /**
  * Helper: Fixes the generated React component
- * 1. Updates the model path to include /assets/3d/
- * 2. Initializes useRef with null to prevent TS errors
- * 3. Fixes TypeScript errors
+ * 1. Adds import for the model URL
+ * 2. Updates useGLTF and preload to use the imported model URL
+ * 3. Initializes useRef with null to prevent TS errors
+ * 4. Fixes TypeScript errors
  */
-function fixGeneratedComponent(filePath: string, originalPathInFile: string, newPath: string) {
+function fixGeneratedComponent(filePath: string, originalPathInFile: string) {
   let content: string;
   try {
     content = fs.readFileSync(filePath, 'utf-8');
@@ -46,12 +47,25 @@ function fixGeneratedComponent(filePath: string, originalPathInFile: string, new
     return;
   }
 
-  // Fix model path
+  // Replace model path string with modelUrl variable
   const pathRegex = new RegExp(`(['"])([^'"]*${originalPathInFile})(['"])`, 'g');
+  content = content.replace(pathRegex, 'modelUrl');
 
-  content = content.replace(pathRegex, (_match, quote) => {
-    return `${quote}${newPath}${quote}`;
-  });
+  // Add the import statement
+  const importStatement = `import modelUrl from '@/assets/3d/${originalPathInFile}?url';`;
+
+  // Insert after the last import
+  const lastImportIndex = content.lastIndexOf('import');
+  const endOfImports = content.indexOf('\n', lastImportIndex);
+
+  if (lastImportIndex !== -1 && endOfImports !== -1) {
+    const before = content.slice(0, endOfImports + 1);
+    const after = content.slice(endOfImports + 1);
+    content = before + importStatement + '\n' + after;
+  } else {
+    // Fallback
+    content = importStatement + '\n' + content;
+  }
 
   // Shorten paths in comments to just filenames (only in Files and Command lines)
   content = content.replace(/\/\*[\s\S]*?\*\//, (comment) => {
@@ -95,7 +109,9 @@ async function processModels() {
     process.exit(1);
   }
 
-  const files = fs.readdirSync(options.input).filter((f) => f.match(/\.(glb|gltf)$/i));
+  const files = fs
+    .readdirSync(options.input)
+    .filter((f) => f.match(/\.(glb|gltf)$/i) && !f.includes('-transformed'));
 
   console.log(
     `\n--- 🚀 Starting Batch Optimization (${files.length} files in "${options.input}") ---\n`
@@ -197,11 +213,7 @@ async function processModels() {
         const savings = (100 - (Number(sizeAfter) / Number(sizeBefore)) * 100).toFixed(1);
 
         // Fix the generated component to point to the new location in /assets/3d/
-        fixGeneratedComponent(
-          jsxOutput,
-          expectedTransformedName,
-          `/assets/3d/${expectedTransformedName}`
-        );
+        fixGeneratedComponent(jsxOutput, expectedTransformedName);
 
         console.log(
           `✅ ${file.padEnd(30)} | ${sizeBefore.padStart(5)}MB -> ${sizeAfter}MB (-${savings}%)`

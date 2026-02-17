@@ -8,6 +8,7 @@ import React from 'react';
 import { useGLTF } from '@react-three/drei';
 import type * as THREE from 'three';
 import type { GLTF } from 'three-stdlib';
+import modelUrl from '@/assets/3d/CoffeeMug-transformed.glb?url';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -22,9 +23,7 @@ type GLTFResult = GLTF & {
 };
 
 export default function Model(props: React.JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF(
-    '/assets/3d/CoffeeMug-transformed.glb'
-  ) as unknown as GLTFResult;
+  const { nodes, materials } = useGLTF(modelUrl) as unknown as GLTFResult;
   return (
     <group {...props} dispose={null}>
       <mesh geometry={nodes.Mesh.geometry} material={materials.MugMaterial} />
@@ -33,4 +32,4 @@ export default function Model(props: React.JSX.IntrinsicElements['group']) {
   );
 }
 
-useGLTF.preload('/assets/3d/CoffeeMug-transformed.glb');
+useGLTF.preload(modelUrl);
