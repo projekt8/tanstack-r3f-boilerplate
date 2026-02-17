@@ -5,6 +5,7 @@ import { tanstackStart } from '@tanstack/react-start/plugin/vite';
 import viteReact from '@vitejs/plugin-react';
 import viteTsConfigPaths from 'vite-tsconfig-paths';
 import svgr from 'vite-plugin-svgr';
+import glsl from 'vite-plugin-glsl';
 
 import tailwindcss from '@tailwindcss/vite';
 import { nitro } from 'nitro/vite';
@@ -73,6 +74,7 @@ const config = defineConfig({
     }),
     viteReact(),
     svgr(),
+    glsl(),
   ],
 });
 
