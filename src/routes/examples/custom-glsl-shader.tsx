@@ -1,8 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { Container } from '@/components/Container';
 import CanvasPortal from '@/components/r3f/CanvasPortal';
 import { SteamShader } from '@/components/r3f/SteamShader';
 import CoffeeMugModel from '@/components/r3f/CoffeeMugModel';
+import { PageWrapper } from '@/components/layout/PageWrapper';
+import { PageSection } from '@/components/layout/PageSection';
 
 export const Route = createFileRoute('/examples/custom-glsl-shader')({
   component: RouteComponent,
@@ -10,8 +11,8 @@ export const Route = createFileRoute('/examples/custom-glsl-shader')({
 
 function RouteComponent() {
   return (
-    <Container className="flex flex-col gap-25">
-      <section className="relative mx-auto max-w-3xl text-center">
+    <PageWrapper>
+      <PageSection width="narrow">
         <div className="flex items-center justify-center gap-4 text-shadow-black/30 text-shadow-lg">
           <h1 className="uppercase">
             Imported <br /> Models
@@ -28,10 +29,10 @@ function RouteComponent() {
           graphics, you can achieve unique visual effects like the procedural steam shown below, all
           while maintaining excellent performance in your React application.
         </p>
-      </section>
+      </PageSection>
 
-      <section className="grid grid-cols-1 gap-10 md:grid-cols-2">
-        <section className="flex flex-col justify-center">
+      <PageSection layout="2cols">
+        <div className="flex flex-col justify-center">
           <div className="flex gap-4 text-shadow-black/30 text-shadow-lg">
             <h2>
               GLSL Ready & <span className="text-gradient-primary">Optimized GLB</span>
@@ -47,7 +48,8 @@ function RouteComponent() {
             3D models into optimized GLB files and generates ready-to-use React components, ensuring
             your assets are performant and easy to implement.
           </p>
-        </section>
+        </div>
+
         <CanvasPortal
           camera={{
             position: [0, 2.8, 10],
@@ -59,14 +61,14 @@ function RouteComponent() {
           bounds={{
             margin: 1.2,
           }}
-          className="md:min-h-[600px]"
+          className="order-first min-h-[300px] md:order-last md:min-h-[600px]"
         >
           <group>
             <CoffeeMugModel />
             <SteamShader />
           </group>
         </CanvasPortal>
-      </section>
-    </Container>
+      </PageSection>
+    </PageWrapper>
   );
 }

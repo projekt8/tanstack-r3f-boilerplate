@@ -5,7 +5,7 @@ import { HomeIcon, MenuIcon, RocketIcon, SparklesIcon } from 'lucide-react';
 import Logo from '@/assets/tanstack-r3f-logo.svg?react';
 import IconGitHub from '@/assets/github.svg?react';
 import { cn } from '@/lib/utils';
-import { NavLink } from '@/components/NavLink';
+import { NavLink } from '@/components/ui/NavLink';
 
 export const Header = () => {
   const [open, setOpen] = useState(false);

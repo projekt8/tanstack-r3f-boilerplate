@@ -6,9 +6,9 @@ import { TanStackDevtools } from '@tanstack/react-devtools';
 import { ClientOnly, HeadContent, Link, Scripts, createRootRoute } from '@tanstack/react-router';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import appCss from '@/styles/index.css?url';
-import { SmoothScroll } from '@/components/SmoothScroll';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import { SmoothScroll } from '@/components/layout/SmoothScroll';
+import { Header } from '@/components/ui/Header';
+import { Footer } from '@/components/ui/Footer';
 
 const GlobalCanvas = lazy(() => import('@/components/r3f/GlobalCanvas'));
 
@@ -70,9 +70,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <body className="grid min-h-dvh grid-rows-[auto_1fr_auto]">
         <Header />
 
-        <main className="z-10 py-16 pt-25 md:py-25 md:pt-36" id="main-container">
-          {children}
-        </main>
+        {children}
 
         <Footer />
 

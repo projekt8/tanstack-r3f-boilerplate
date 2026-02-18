@@ -1,15 +1,16 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { RoundedBox } from '@react-three/drei';
-import { Container } from '@/components/Container';
 import CanvasPortal from '@/components/r3f/CanvasPortal';
 import WobbleSphere from '@/components/r3f/WobbleSphere';
+import { PageSection } from '@/components/layout/PageSection';
+import { PageWrapper } from '@/components/layout/PageWrapper';
 
 export const Route = createFileRoute('/examples/responsive-3d-elements')({ component: Page });
 
 function Page() {
   return (
-    <Container className="flex flex-col gap-25">
-      <section className="relative mx-auto max-w-3xl text-center">
+    <PageWrapper>
+      <PageSection width="narrow">
         <div className="flex items-center justify-center gap-4 text-shadow-black/30 text-shadow-lg">
           <h1 className="uppercase">
             Responsive <br /> HTML
@@ -27,10 +28,10 @@ function Page() {
           efficiency while maintaining pixel-perfect responsiveness and GSAP-driven scroll
           animations.
         </p>
-      </section>
+      </PageSection>
 
-      <section className="grid grid-cols-1 gap-10 md:grid-cols-2">
-        <section className="flex flex-col justify-center">
+      <PageSection layout="2cols">
+        <div className="flex flex-col justify-center">
           <div className="flex gap-4 text-shadow-black/30 text-shadow-lg">
             <h2>
               <span className="text-gradient-primary">Responsive</span> <br /> Scenes
@@ -46,14 +47,14 @@ function Page() {
             to DOM events. In this example, the sphere&apos;s scale and color are driven by its
             container&apos;s scroll position.
           </p>
-        </section>
-        <CanvasPortal id="wobble-sphere-trigger" camera environment lights loader bounds>
-          <WobbleSphere trigger="#wobble-sphere-trigger" />
+        </div>
+        <CanvasPortal camera environment lights loader bounds>
+          <WobbleSphere />
         </CanvasPortal>
-      </section>
+      </PageSection>
 
-      <section className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-4">
-        <section className="flex flex-col justify-center">
+      <PageSection layout="2cols">
+        <div className="flex flex-col justify-center">
           <div className="flex gap-4 text-shadow-black/30 text-shadow-lg">
             <h2>
               Interactive <br /> <span className="text-gradient-primary">Viewports</span>
@@ -68,7 +69,7 @@ function Page() {
             The <strong>bounds</strong> property automatically centers and scales your 3D content to
             fit its DOM container, ensuring pixel-perfect alignment across different screen sizes.
           </p>
-        </section>
+        </div>
 
         <CanvasPortal
           camera
@@ -97,7 +98,7 @@ function Page() {
             />
           </RoundedBox>
         </CanvasPortal>
-      </section>
-    </Container>
+      </PageSection>
+    </PageWrapper>
   );
 }

@@ -34,7 +34,6 @@ function Bubbles() {
   useGSAP(() => {
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: '#main-container',
         start: 'top top',
         end: 'bottom bottom',
         scrub: 1.5,
