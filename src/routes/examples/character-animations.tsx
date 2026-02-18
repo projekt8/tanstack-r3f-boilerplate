@@ -31,7 +31,7 @@ function RouteComponent() {
         end: 'bottom bottom',
         scrub: true,
       },
-      y: 300,
+      y: 250,
     });
   });
 
@@ -45,16 +45,11 @@ function RouteComponent() {
             Animations
           </h1>
         </div>
-        <p className="mb-4 text-xl font-medium md:text-2xl">
-          Bring your 3D models to life with skeletal animation
-        </p>
         <p className="text-neutral-300">
-          Import <strong>rigged GLB models</strong> and control their{' '}
-          <strong>skeletal animations</strong> in React. This example demonstrates how to manage
-          animation states, and seamlessly blend actions for fluid character movement.
+          Import <strong>rigged GLB models</strong> and control their <strong>animations</strong> in
+          React. This example shows how to manage animation states, and seamlessly blend actions for
+          fluid character movement.
         </p>
-
-        <div></div>
       </PageSection>
 
       <div className="z-10 mx-auto mt-[60vh] flex items-center justify-center gap-4">
