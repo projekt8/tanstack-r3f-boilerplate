@@ -2,21 +2,24 @@ import { useGSAP } from '@gsap/react';
 import { MeshDistortMaterial } from '@react-three/drei';
 import { useRef } from 'react';
 import gsap from 'gsap';
-import type { ComponentRef } from 'react';
+import type { ComponentProps, ComponentRef } from 'react';
 import type { Mesh } from 'three';
+import { useCanvasPortal } from '@/components/r3f/CanvasPortal';
 
 export interface WobbleSphereProps extends React.ComponentProps<'mesh'> {
   trigger?: ScrollTrigger.Vars['trigger'];
 }
 
-const WobbleSphere = ({ trigger, ...props }: WobbleSphereProps) => {
+const WobbleSphere = (props: ComponentProps<'mesh'>) => {
   const meshRef = useRef<Mesh>(null!);
   const materialRef = useRef<ComponentRef<typeof MeshDistortMaterial>>(null!);
+
+  const { containerRef } = useCanvasPortal();
 
   useGSAP(() => {
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: trigger,
+        trigger: containerRef.current,
         start: 'top center',
         end: 'bottom top',
         scrub: 1,
