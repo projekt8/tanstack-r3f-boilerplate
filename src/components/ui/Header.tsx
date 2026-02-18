@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from '@tanstack/react-router';
 import { useLenis } from 'lenis/react';
-import { HomeIcon, MenuIcon, RocketIcon, SparklesIcon } from 'lucide-react';
+import {
+  HandMetalIcon,
+  HomeIcon,
+  MenuIcon,
+  MonitorSmartphoneIcon,
+  SparklesIcon,
+} from 'lucide-react';
 import Logo from '@/assets/tanstack-r3f-logo.svg?react';
 import IconGitHub from '@/assets/github.svg?react';
 import { cn } from '@/lib/utils';
@@ -79,7 +85,7 @@ export const Header = () => {
           <li>
             <NavLink to="/examples/responsive-3d-elements">
               <span className="rounded-full bg-gradient-primary p-2">
-                <RocketIcon className="size-5" />
+                <MonitorSmartphoneIcon className="size-5" />
               </span>
               Responsive Scenes
             </NavLink>
@@ -92,23 +98,14 @@ export const Header = () => {
               Custom GLSL Shader
             </NavLink>
           </li>
-          <li className="mt-4 font-normal italic opacity-80">more coming soon...</li>
-          {/* <li>
-            <NavLink to="/examples/responsive-3d-elements">
+          <li>
+            <NavLink to="/examples/character-animation">
               <span className="rounded-full bg-gradient-primary p-2">
-                <RocketIcon className="size-5" />
+                <HandMetalIcon className="size-5" />
               </span>
-              Scroll Controlled Camera
+              Model Animation
             </NavLink>
           </li>
-          <li>
-            <NavLink to="/examples/responsive-3d-elements">
-              <span className="rounded-full bg-gradient-primary p-2">
-                <RocketIcon className="size-5" />
-              </span>
-              Animated 3D Elements
-            </NavLink>
-          </li> */}
         </ul>
       </nav>
     </header>
