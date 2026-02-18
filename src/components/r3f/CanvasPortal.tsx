@@ -70,8 +70,8 @@ const CanvasPortal = ({
     <div
       ref={ref}
       className={cn(
-        'relative flex h-full min-h-[400px] w-full items-center justify-center',
-        fullscreen && 'fixed inset-0 h-full w-full',
+        'flex h-full min-h-[400px] w-full items-center justify-center',
+        fullscreen ? 'fixed inset-0' : 'relative',
         orbitControls && 'cursor-grab active:cursor-grabbing',
         className
       )}

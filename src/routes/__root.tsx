@@ -67,7 +67,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body className="grid min-h-dvh grid-rows-[auto_1fr_auto]">
+      <body className="grid min-h-dvh grid-rows-[1fr_auto]">
         <Header />
 
         {children}
