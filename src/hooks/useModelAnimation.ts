@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useShallow } from 'zustand/react/shallow';
-import { useAnimationStore } from '@/stores/useAnimationStore';
 import type { AnimationAction } from 'three';
+import { useAnimationStore } from '@/stores/useAnimationStore';
 
 /**
  * Hook that connects a model's animations to the global animation store.

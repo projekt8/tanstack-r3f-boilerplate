@@ -10,6 +10,7 @@ import { useAnimations, useGLTF } from '@react-three/drei';
 import { SkeletonUtils } from 'three-stdlib';
 import type { GLTF } from 'three-stdlib';
 import type * as THREE from 'three';
+import { useModelAnimation } from '@/hooks/useModelAnimation';
 import modelUrl from '@/assets/3d/Armature-transformed.glb?url';
 
 type ActionName = 'Idle' | 'Running';
@@ -46,6 +47,7 @@ export default function Model(props: React.JSX.IntrinsicElements['group']) {
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene]);
   const { nodes, materials } = useGraph(clone) as unknown as GLTFResult;
   const { actions } = useAnimations(animations, group);
+  useModelAnimation('ArmatureModel', actions, 'Idle');
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">

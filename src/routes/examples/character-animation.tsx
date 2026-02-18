@@ -1,13 +1,13 @@
-import { Grid } from '@react-three/drei';
 import { createFileRoute } from '@tanstack/react-router';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 import { PageSection } from '@/components/layout/PageSection';
 import { PageWrapper } from '@/components/layout/PageWrapper';
 import ArmatureModel from '@/components/r3f/ArmatureModel';
 import CanvasPortal from '@/components/r3f/CanvasPortal';
 import { useAnimationStore } from '@/stores/useAnimationStore';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
 import { MultiSwitch } from '@/components/ui/MultiSwitch';
+import FloorGrid from '@/components/r3f/FloorGrid';
 
 export const Route = createFileRoute('/examples/character-animation')({
   component: RouteComponent,
@@ -85,26 +85,13 @@ function RouteComponent() {
           autoRotateSpeed: -0.5,
           minPolarAngle: Math.PI / 4,
           maxPolarAngle: Math.PI / 2,
-          target: [0, 0.8, 0],
+          target: [0, 0.75, 0],
         }}
       >
         <fog attach="fog" args={[0x0f1b27, 6, 15]} />
 
         <ArmatureModel />
-        <Grid
-          args={[20, 20]}
-          position={[0, -0.001, 0]}
-          cellSize={0.5}
-          cellThickness={0.5}
-          cellColor="#6f6f6f"
-          sectionSize={3}
-          sectionThickness={1}
-          sectionColor="#2080ff"
-          fadeDistance={15}
-          fadeStrength={1}
-          followCamera={false}
-          infiniteGrid={true}
-        />
+        <FloorGrid />
       </CanvasPortal>
     </PageWrapper>
   );
