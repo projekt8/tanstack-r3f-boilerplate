@@ -7,4 +7,9 @@ export default [
   {
     ignores: ['.output/', '.tanstack/', 'dist/', 'build/', 'node_modules/', 'routeTree.gen.ts'],
   },
+  {
+    rules: {
+      '@typescript-eslint/no-unnecessary-condition': 'off',
+    },
+  },
 ];
