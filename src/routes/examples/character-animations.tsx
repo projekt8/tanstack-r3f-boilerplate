@@ -9,7 +9,7 @@ import { useAnimationStore } from '@/stores/useAnimationStore';
 import { MultiSwitch } from '@/components/ui/MultiSwitch';
 import FloorGrid from '@/components/r3f/FloorGrid';
 
-export const Route = createFileRoute('/examples/character-animation')({
+export const Route = createFileRoute('/examples/character-animations')({
   component: RouteComponent,
 });
 

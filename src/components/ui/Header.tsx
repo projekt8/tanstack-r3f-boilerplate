@@ -99,11 +99,11 @@ export const Header = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/examples/character-animation">
+            <NavLink to="/examples/character-animations">
               <span className="rounded-full bg-gradient-primary p-2">
                 <HandMetalIcon className="size-5" />
               </span>
-              Model Animation
+              Character Animations
             </NavLink>
           </li>
         </ul>
