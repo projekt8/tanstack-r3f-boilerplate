@@ -40,6 +40,17 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## 📜 Scripts
+
+- `npm run dev`: Starts the development server.
+- `npm run build`: Builds the application for production.
+- `npm run preview`: Previews the production build locally.
+- `npm run test`: Runs tests using Vitest.
+- `npm run lint`: Runs ESLint.
+- `npm run format`: Runs Prettier to format code.
+- `npm run check`: checks for formatting and linting issues.
+- `npm run optimize:models`: Optimizes 3D models and generates R3F components.
+
 ## 📂 Project Structure
 
 The project follows a standard Vite + React application structure with specific conventions for TanStack Router and React Three Fiber.
@@ -106,16 +117,41 @@ This boilerplate includes a powerful automated pipeline for optimizing 3D models
    }
    ```
 
-## 📜 Scripts
+## 💃 Animation System
 
-- `npm run dev`: Starts the development server.
-- `npm run build`: Builds the application for production.
-- `npm run preview`: Previews the production build locally.
-- `npm run test`: Runs tests using Vitest.
-- `npm run lint`: Runs ESLint.
-- `npm run format`: Runs Prettier to format code.
-- `npm run check`: checks for formatting and linting issues.
-- `npm run optimize:models`: Optimizes 3D models and generates R3F components.
+Build complex, interactive 3D experiences with ease using our centralized animation system.
+
+### 1. Hook up your model
+
+Use the `useModelAnimation` hook in your GLTF component to register it with the store. This automatically handles mounting, unmounting, and crossfading.
+
+```tsx
+// src/components/r3f/MyModel.tsx
+import { useModelAnimation } from '@/hooks/useModelAnimation';
+
+export default function Model(props) {
+  const { actions } = useAnimations(animations, group);
+
+  // Connect to store: Unique ID, actions, default animation
+  useModelAnimation('MyModel', actions, 'Idle');
+
+  return <group ... />
+}
+```
+
+### 2. Control from anywhere
+
+Trigger animations from any component in your app (UI, scroll triggers, etc.) using `useAnimationStore`.
+
+```tsx
+import { useAnimationStore } from '@/stores/useAnimationStore';
+
+function Controls() {
+  const { setAnimation } = useAnimationStore();
+
+  return <button onClick={() => setAnimation('MyModel', 'Run')}>Run</button>;
+}
+```
 
 ## 🤝 Contributing
 
