@@ -25,9 +25,10 @@
     "preview": "vite preview",
     "test": "vitest run",
     "lint": "eslint",
+    "lint:fix": "eslint --fix",
     "format": "prettier",
     "format:fix": "prettier --write .",
-    "check": "prettier --write . && eslint --fix",
+    "check": "npm run lint:fix && npm run format:fix",
     "optimize:models": "tsx scripts/optimize-models.ts"
   },
   "dependencies": {

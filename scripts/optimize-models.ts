@@ -38,7 +38,11 @@ const getMB = (filePath: string): string => {
  * 3. Initializes useRef with null to prevent TS errors
  * 4. Fixes TypeScript errors
  */
-function fixGeneratedComponent(filePath: string, originalPathInFile: string) {
+function fixGeneratedComponent(
+  filePath: string,
+  originalPathInFile: string,
+  componentName: string
+) {
   let content: string;
   try {
     content = fs.readFileSync(filePath, 'utf-8');
@@ -52,7 +56,11 @@ function fixGeneratedComponent(filePath: string, originalPathInFile: string) {
   content = content.replace(pathRegex, 'modelUrl');
 
   // Add the import statement
-  const importStatement = `import modelUrl from '@/assets/3d/${originalPathInFile}?url';`;
+  let importStatement = `import modelUrl from '@/assets/3d/${originalPathInFile}?url';`;
+
+  if (content.includes('useAnimations')) {
+    importStatement += `\nimport { useModelAnimation } from '@/hooks/useModelAnimation';`;
+  }
 
   // Insert after the last import
   const lastImportIndex = content.lastIndexOf('import');
@@ -89,6 +97,16 @@ function fixGeneratedComponent(filePath: string, originalPathInFile: string) {
 
   if (!content.includes('interface GLTFAction') && !content.includes('type GLTFAction')) {
     content = content.replace(/animations: GLTFAction\[\]/g, 'animations: THREE.AnimationClip[]');
+  }
+
+  // Inject useModelAnimation hook call
+  if (content.includes('useAnimations')) {
+    const actionNameMatch = content.match(/type ActionName = ['"](.+?)['"]/);
+    const defaultAction = actionNameMatch ? actionNameMatch[1] : 'Idle';
+
+    const animationHookRegex = /(const \{ actions \} = useAnimations\(animations, group\);?)/;
+    const hookCall = `\n  useModelAnimation('${componentName}', actions, '${defaultAction}');`;
+    content = content.replace(animationHookRegex, `$1${hookCall}`);
   }
 
   fs.writeFileSync(filePath, content, 'utf-8');
@@ -213,7 +231,11 @@ async function processModels() {
         const savings = (100 - (Number(sizeAfter) / Number(sizeBefore)) * 100).toFixed(1);
 
         // Fix the generated component to point to the new location in /assets/3d/
-        fixGeneratedComponent(jsxOutput, expectedTransformedName);
+        fixGeneratedComponent(jsxOutput, expectedTransformedName, `${componentName}Model`);
+
+        // Lint and format the generated component
+        execSync(`npm run lint:fix -- "${jsxOutput}"`);
+        execSync(`npm run format -- --write "${jsxOutput}"`);
 
         console.log(
           `✅ ${file.padEnd(30)} | ${sizeBefore.padStart(5)}MB -> ${sizeAfter}MB (-${savings}%)`
