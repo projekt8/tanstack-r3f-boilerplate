@@ -1,4 +1,4 @@
-# Contributing to TanStack + React Three Fiber Boilerplate
+# Contributing to TanStack R3F Boilerplate
 
 Thank you for your interest in contributing! We appreciate your help in making this project better.
 

@@ -1,4 +1,4 @@
-# TanStack Start + React Three Fiber Boilerplate
+# TanStack R3F Boilerplate
 
 A modern, high-performance boilerplate built for the next generation of web experiences. Combining the power of **TanStack Start** for full-stack capabilities, **React Three Fiber** for immersive 3D content, and **GSAP** for award-winning animations.
 
