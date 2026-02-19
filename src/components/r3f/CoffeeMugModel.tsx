@@ -19,7 +19,6 @@ type GLTFResult = GLTF & {
     MugMaterial: THREE.MeshStandardMaterial;
     CoffeeMaterial: THREE.MeshStandardMaterial;
   };
-  animations: Array<THREE.AnimationClip>;
 };
 
 export default function Model(props: React.JSX.IntrinsicElements['group']) {

@@ -8,8 +8,8 @@ import React from 'react';
 import { useGraph } from '@react-three/fiber';
 import { useAnimations, useGLTF } from '@react-three/drei';
 import { SkeletonUtils } from 'three-stdlib';
-import type { GLTF } from 'three-stdlib';
 import type * as THREE from 'three';
+import type { GLTF } from 'three-stdlib';
 import modelUrl from '@/assets/3d/Armature-transformed.glb?url';
 import { useModelAnimation } from '@/hooks/useModelAnimation';
 
