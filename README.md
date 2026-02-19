@@ -25,8 +25,8 @@ A modern, high-performance boilerplate built for the next generation of web expe
 Clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/your-username/react-three-fiber-tanstack-boilerplate.git
-cd react-three-fiber-tanstack-boilerplate
+git clone https://github.com/projekt8/tanstack-r3f-boilerplate.git
+cd tanstack-r3f-boilerplate
 npm install
 ```
 
@@ -42,14 +42,18 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## 📜 Scripts
 
-- `npm run dev`: Starts the development server.
-- `npm run build`: Builds the application for production.
-- `npm run preview`: Previews the production build locally.
-- `npm run test`: Runs tests using Vitest.
-- `npm run lint`: Runs ESLint.
-- `npm run format`: Runs Prettier to format code.
-- `npm run check`: checks for formatting and linting issues.
-- `npm run optimize:models`: Optimizes 3D models and generates R3F components.
+| Command                   | Description                                    |
+| ------------------------- | ---------------------------------------------- |
+| `npm run dev`             | Start development server on port 3000          |
+| `npm run build`           | Build for production                           |
+| `npm run preview`         | Preview production build locally               |
+| `npm run test`            | Run tests (Vitest)                             |
+| `npm run lint`            | Lint with ESLint                               |
+| `npm run lint:fix`        | Lint and auto-fix                              |
+| `npm run format`          | Check formatting (Prettier)                    |
+| `npm run format:fix`      | Auto-format all files                          |
+| `npm run check`           | Lint + format in one pass                      |
+| `npm run optimize:models` | Optimize 3D models and generate R3F components |
 
 ## 📂 Project Structure
 
@@ -152,6 +156,12 @@ function Controls() {
   return <button onClick={() => setAnimation('MyModel', 'Run')}>Run</button>;
 }
 ```
+
+## 🚢 Deployment
+
+The project ships with a GitHub Actions workflow (`.github/workflows/deploy.yml`) that builds and deploys to **GitHub Pages** on every push to `main`.
+
+The workflow sets `VITE_BASE_PATH=/<repo-name>/` so that assets and links resolve correctly when the app is served from a repository subpath (e.g. `https://username.github.io/tanstack-r3f-boilerplate/`). If you deploy to a custom domain at the root, remove or override this variable.
 
 ## 🤝 Contributing
 

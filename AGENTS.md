@@ -39,6 +39,17 @@ src/
 └── assets/       # Static assets
 ```
 
+### Where to Put Things
+
+- **New pages** → `src/routes/` (use `createFileRoute`)
+- **Reusable 3D scenes** → `src/components/r3f/` (wrap in `CanvasPortal`)
+- **UI components** → `src/components/ui/`
+- **Layout components** → `src/components/layout/`
+- **Custom hooks** → `src/hooks/`
+- **State stores** → `src/stores/`
+- **Shaders** → `src/shader/`
+- **Server functions**: No `createServerFn` usage yet. When adding backend logic, colocate server functions alongside their route or in a dedicated `src/server/` directory.
+
 ### Routing (TanStack Router)
 
 - Use `createFileRoute` for type-safe routes.
@@ -62,8 +73,8 @@ src/
 
 ### Animation Loop
 
-- **NEVER** use `requestAnimationFrame` directly.
-- **ALWAYS** use `Tempus` or `useFrame` (R3F) for loops to ensure sync.
+- **NEVER** use `requestAnimationFrame` for recurring animation loops. **ALWAYS** use `Tempus` or `useFrame` (R3F) to ensure sync.
+- One-shot `requestAnimationFrame` calls (e.g. waiting for a paint before measuring layout) are acceptable when no Tempus/useFrame equivalent exists.
 
 ## 4. Coding Rules
 
