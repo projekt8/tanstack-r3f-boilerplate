@@ -78,7 +78,6 @@
     "vite": "^7.1.7",
     "vite-plugin-glsl": "^1.5.5",
     "vite-plugin-svgr": "^4.5.0",
-    "vitest": "^3.0.5",
-    "web-vitals": "^5.1.0"
+    "vitest": "^3.0.5"
   }
 }
