@@ -42,12 +42,12 @@ function RouteComponent() {
         end: 'bottom bottom',
         scrub: true,
       },
-      y: 250,
+      y: 300,
     });
   });
 
   return (
-    <PageWrapper>
+    <PageWrapper className="min-h-[150vh]">
       <PageSection width="narrow">
         <div className="flex items-center justify-center gap-4 text-shadow-black/30 text-shadow-lg">
           <h1 className="uppercase">
@@ -61,10 +61,8 @@ function RouteComponent() {
           React. This example shows how to manage animation states, and seamlessly blend actions for
           fluid character movement.
         </p>
-      </PageSection>
-
-      <div className="z-10 mx-auto mt-[60vh] flex items-center justify-center gap-4">
         <MultiSwitch
+          className="sticky top-24 z-10 mt-8"
           items={ANIMATIONS.map((anim) => ({
             label: anim,
             onClick: () => setAnimation(MODEL_ID, anim),
@@ -75,7 +73,7 @@ function RouteComponent() {
             if (anim) setAnimation(MODEL_ID, anim);
           }}
         />
-      </div>
+      </PageSection>
 
       <CanvasPortal
         id="character-animation-canvas"
@@ -91,7 +89,7 @@ function RouteComponent() {
           autoRotateSpeed: -0.5,
           minPolarAngle: Math.PI / 4,
           maxPolarAngle: Math.PI / 2,
-          target: [0, 0.75, 0],
+          target: [0, 0.95, 0],
         }}
       >
         <fog attach="fog" args={[0x0f1b27, 6, 15]} />

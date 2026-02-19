@@ -65,7 +65,7 @@ export const MultiSwitch = ({
     <div
       ref={containerRef}
       className={cn(
-        'relative inline-flex items-center rounded-full border border-neutral-700 bg-neutral-800/80 p-2',
+        'relative mx-auto flex w-fit items-center rounded-full border border-neutral-700 bg-neutral-800/80 p-2',
         className
       )}
       role="radiogroup"
