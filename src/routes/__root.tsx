@@ -6,6 +6,7 @@ import { TanStackDevtools } from '@tanstack/react-devtools';
 import { ClientOnly, HeadContent, Link, Scripts, createRootRoute } from '@tanstack/react-router';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import appCss from '@/styles/index.css?url';
+import favicon from '@/assets/favicon.svg?url';
 import { SmoothScroll } from '@/components/layout/SmoothScroll';
 import { Header } from '@/components/ui/Header';
 import { Footer } from '@/components/ui/Footer';
@@ -38,7 +39,7 @@ export const Route = createRootRoute({
       },
       {
         rel: 'icon',
-        href: '/favicon.svg',
+        href: favicon,
         type: 'image/svg+xml',
       },
       {
