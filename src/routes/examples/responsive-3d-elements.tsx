@@ -5,7 +5,19 @@ import WobbleSphere from '@/components/r3f/WobbleSphere';
 import { PageSection } from '@/components/layout/PageSection';
 import { PageWrapper } from '@/components/layout/PageWrapper';
 
-export const Route = createFileRoute('/examples/responsive-3d-elements')({ component: Page });
+export const Route = createFileRoute('/examples/responsive-3d-elements')({
+  head: () => ({
+    meta: [
+      { title: 'Responsive 3D Elements | TanStack R3F Boilerplate' },
+      {
+        name: 'description',
+        content:
+          'Seamlessly integrate responsive Three.js scenes into your HTML document flow with CanvasPortal and GSAP ScrollTrigger.',
+      },
+    ],
+  }),
+  component: Page,
+});
 
 function Page() {
   return (

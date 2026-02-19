@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useShallow } from 'zustand/react/shallow';
 import type { AnimationAction } from 'three';
+import type { ModelId } from '@/stores/useAnimationStore';
 import { useAnimationStore } from '@/stores/useAnimationStore';
 
 /**
@@ -14,7 +15,7 @@ import { useAnimationStore } from '@/stores/useAnimationStore';
  * @param defaultAnimation - Animation to play on mount
  */
 export function useModelAnimation(
-  modelId: string,
+  modelId: ModelId,
   actions: Record<string, AnimationAction | null>,
   defaultAnimation: string
 ) {

@@ -32,7 +32,7 @@ const WobbleSphere = (props: ComponentProps<'mesh'>) => {
 
   return (
     <mesh ref={meshRef} onClick={() => console.log('sphere clicked')} {...props}>
-      <sphereGeometry args={[1, 64, 64]} />
+      <sphereGeometry args={[1, 48, 48]} />
       <MeshDistortMaterial
         ref={materialRef}
         color="#ff6345"

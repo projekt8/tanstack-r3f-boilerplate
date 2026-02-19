@@ -1,5 +1,5 @@
-import { Project, ScriptTarget, SyntaxKind } from 'ts-morph';
 import * as path from 'node:path';
+import { Project, ScriptTarget, SyntaxKind } from 'ts-morph';
 
 /**
  * Helper: Fixes the generated React component using ts-morph

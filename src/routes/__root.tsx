@@ -23,11 +23,12 @@ export const Route = createRootRoute({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'TanStack Start Starter',
+        title: 'TanStack R3F Boilerplate',
       },
       {
         name: 'description',
-        content: 'TanStack Start Starter',
+        content:
+          'A high-performance boilerplate combining TanStack Start, React Three Fiber, GSAP, Lenis, and Tempus.',
       },
     ],
     links: [

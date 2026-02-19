@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { MathUtils } from 'three';
 import { useFrame } from '@react-three/fiber';
 import { Environment, Instance, Instances, PerspectiveCamera } from '@react-three/drei';
@@ -52,7 +52,7 @@ function Bubbles() {
       receiveShadow
       position={[0, 2.5, 0]}
     >
-      <sphereGeometry args={[0.45, 64, 64]} />
+      <sphereGeometry args={[0.45, 32, 32]} />
       <meshStandardMaterial roughness={1} color="#28394a" />
       {particles.map((data, i) => (
         <Bubble key={i} {...data} />
@@ -75,9 +75,8 @@ function Bubble({
   zFactor: number;
 }) {
   const ref = useRef<Object3D>(null!);
-  const [scaleMultiplier, setScaleMultiplier] = useState(0);
+  const scaleMultiplier = useRef(0);
 
-  // Animate scale from 0 to 1 on mount
   useGSAP(() => {
     gsap.to(
       { value: 0 },
@@ -86,7 +85,7 @@ function Bubble({
         duration: 1.5,
         ease: 'back.out(1.7)',
         onUpdate: function () {
-          setScaleMultiplier(this.targets()[0].value);
+          scaleMultiplier.current = this.targets()[0].value;
         },
       }
     );
@@ -95,7 +94,7 @@ function Bubble({
   useFrame((state) => {
     const t = factor + state.clock.elapsedTime * (speed / 5);
     const wobbleScale = Math.max(1.5, Math.cos(t) * 5);
-    ref.current.scale.setScalar(wobbleScale * scaleMultiplier);
+    ref.current.scale.setScalar(wobbleScale * scaleMultiplier.current);
     ref.current.position.set(
       Math.cos(t) +
         Math.sin(t * 1) / 10 +

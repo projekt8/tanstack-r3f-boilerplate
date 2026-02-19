@@ -8,7 +8,19 @@ import { PageSection } from '@/components/layout/PageSection';
 
 const SpheresBackground = lazy(() => import('@/components/r3f/SpheresBackground'));
 
-export const Route = createFileRoute('/')({ component: HomePage });
+export const Route = createFileRoute('/')({
+  head: () => ({
+    meta: [
+      { title: 'TanStack R3F Boilerplate' },
+      {
+        name: 'description',
+        content:
+          'A high-performance boilerplate combining TanStack Start, React Three Fiber, GSAP, Lenis, and Tempus.',
+      },
+    ],
+  }),
+  component: HomePage,
+});
 
 function HomePage() {
   return (

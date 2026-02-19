@@ -1,5 +1,7 @@
 import { create } from 'zustand';
 
+export type ModelId = string;
+
 type ModelAnimationState = {
   /** Currently active animation name */
   currentAnimation: string;
@@ -12,13 +14,13 @@ type AnimationStore = {
   models: Record<string, ModelAnimationState>;
 
   /** Register a model with its default animation (called on mount) */
-  register: (modelId: string, defaultAnimation: string) => void;
+  register: (modelId: ModelId, defaultAnimation: string) => void;
   /** Unregister a model (called on unmount) */
-  unregister: (modelId: string) => void;
+  unregister: (modelId: ModelId) => void;
   /** Set the active animation for a specific model */
-  setAnimation: (modelId: string, name: string) => void;
+  setAnimation: (modelId: ModelId, name: string) => void;
   /** Adjust the crossfade duration for a specific model */
-  setFadeDuration: (modelId: string, duration: number) => void;
+  setFadeDuration: (modelId: ModelId, duration: number) => void;
 };
 
 export const useAnimationStore = create<AnimationStore>((set) => ({

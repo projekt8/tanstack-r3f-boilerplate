@@ -2,13 +2,17 @@ import { Grid } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
 import type { Mesh } from 'three';
+import type { ModelId } from '@/stores/useAnimationStore';
 import { useAnimationStore } from '@/stores/useAnimationStore';
+
+const ARMATURE_MODEL_ID: ModelId = 'ArmatureModel';
 
 export default function FloorGrid() {
   const gridRef = useRef<Mesh>(null);
-  const currentAnimation = useAnimationStore((s) => s.models['ArmatureModel']?.currentAnimation);
 
   useFrame((_, delta) => {
+    const currentAnimation =
+      useAnimationStore.getState().models[ARMATURE_MODEL_ID]?.currentAnimation;
     if (gridRef.current && currentAnimation === 'Running') {
       gridRef.current.position.z = (gridRef.current.position.z - delta * 3.8) % 3;
     }

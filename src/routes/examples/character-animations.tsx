@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import type { ModelId } from '@/stores/useAnimationStore';
 import { PageSection } from '@/components/layout/PageSection';
 import { PageWrapper } from '@/components/layout/PageWrapper';
 import ArmatureModel from '@/components/r3f/ArmatureModel';
@@ -10,10 +11,20 @@ import { MultiSwitch } from '@/components/ui/MultiSwitch';
 import FloorGrid from '@/components/r3f/FloorGrid';
 
 export const Route = createFileRoute('/examples/character-animations')({
+  head: () => ({
+    meta: [
+      { title: 'Character Animations | TanStack R3F Boilerplate' },
+      {
+        name: 'description',
+        content:
+          'Import rigged GLB models and control animation states with crossfade blending for fluid character movement.',
+      },
+    ],
+  }),
   component: RouteComponent,
 });
 
-const MODEL_ID = 'ArmatureModel';
+const MODEL_ID: ModelId = 'ArmatureModel';
 const ANIMATIONS = ['Idle', 'Running'] as const;
 
 function RouteComponent() {

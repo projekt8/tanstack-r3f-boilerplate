@@ -13,9 +13,12 @@ interface SteamShaderProps {
   windStrength?: number;
 }
 
+const DEFAULT_POSITION: [number, number, number] = [-0.1, 1.05, 0];
+const DEFAULT_SIZE: [number, number, number] = [0.8, 1.5, 0.8];
+
 export const SteamShader = ({
-  position = [-0.1, 1.05, 0],
-  size = [0.8, 1.5, 0.8],
+  position = DEFAULT_POSITION,
+  size = DEFAULT_SIZE,
   windStrength = 0.35,
 }: SteamShaderProps) => {
   const meshRef = useRef<Mesh>(null);
@@ -36,7 +39,7 @@ export const SteamShader = ({
     planeGeometry.scale(size[0], size[1], size[2]);
     planeGeometry.rotateY(1.9);
     return planeGeometry;
-  }, [size]);
+  }, [position, size]);
 
   // ensure the uniforms object has a stable reference
   const uniforms = useMemo(

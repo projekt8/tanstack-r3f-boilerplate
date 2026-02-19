@@ -6,6 +6,16 @@ import { PageWrapper } from '@/components/layout/PageWrapper';
 import { PageSection } from '@/components/layout/PageSection';
 
 export const Route = createFileRoute('/examples/custom-glsl-shader')({
+  head: () => ({
+    meta: [
+      { title: 'Custom GLSL Shader | TanStack R3F Boilerplate' },
+      {
+        name: 'description',
+        content:
+          'Enhance imported GLB models with custom GLSL vertex and fragment shaders for unique visual effects.',
+      },
+    ],
+  }),
   component: RouteComponent,
 });
 
