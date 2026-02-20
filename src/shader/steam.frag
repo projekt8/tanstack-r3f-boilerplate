@@ -17,3 +17,4 @@ void main() {
 
     gl_FragColor = vec4(0.95, 0.95, 0.98, steam);
 }
+// vim: set syntax=glsl:
