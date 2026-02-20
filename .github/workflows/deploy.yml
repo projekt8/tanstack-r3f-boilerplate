@@ -42,6 +42,9 @@ jobs:
         env:
           VITE_BASE_PATH: /${{ github.event.repository.name }}/
 
+      - name: Create 404 page for GitHub Pages
+        run: cp .output/public/index.html .output/public/404.html
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
