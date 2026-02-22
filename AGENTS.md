@@ -21,6 +21,7 @@ You **MUST** respect these versions. Do not hallucinate older API usages.
 - **React**: v19.2.0 (Use React 19 features like `use`, `actions`, but avoid experimental unless specified)
 - **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) (No `postcss.config.js` needed, uses `@theme` in CSS)
 - **3D Engine**: [React Three Fiber](https://docs.pmnd.rs/react-three-fiber) (v9) + Three.js (v0.182)
+- **State**: [Zustand](https://zustand.docs.pmnd.rs/) (v5.x). Lightweight stores in `src/stores/`. Use for global UI/UX state (e.g. animation control), not for server data.
 - **Animation**:
   - **GSAP** (v3.14): Complex timeline-based animations.
   - **Tempus**: strict animation loop synchronization.
@@ -36,6 +37,7 @@ src/
 ├── routes/       # File-based routing (TanStack Router)
 ├── styles/       # Global styles (Tailwind v4 Setup)
 ├── lib/          # Utilities & helpers
+├── stores/       # Zustand state stores
 └── assets/       # Static assets
 ```
 
@@ -49,6 +51,13 @@ src/
 - **State stores** → `src/stores/`
 - **Shaders** → `src/shader/`
 - **Server functions**: No `createServerFn` usage yet. When adding backend logic, colocate server functions alongside their route or in a dedicated `src/server/` directory.
+
+### State (Zustand)
+
+- **Stores live in** `src/stores/`. Create stores with `create<StoreType>(...)` from `'zustand'`.
+- **Selectors**: Prefer selecting only the fields you need. When a component needs multiple fields, use `useShallow` from `'zustand/react/shallow'` to avoid re-renders when other parts of the store change (e.g. `useStore(useShallow(s => ({ a: s.a, b: s.b })))`).
+- **R3F + Zustand**: Do **not** subscribe to fast-changing store state inside `useFrame` or in hot paths (e.g. pointer move). That causes excessive re-renders and hurts FPS. Read store state inside `useFrame` via `useStore.getState()` (one-off read) or keep a ref updated from a separate subscription; never bind the store directly to render or to `useFrame` for high-frequency updates.
+- **Existing store**: `useAnimationStore` in `src/stores/useAnimationStore.ts` — model animation registration and control; used by `useModelAnimation` and UI that triggers animations.
 
 ### Routing (TanStack Router)
 

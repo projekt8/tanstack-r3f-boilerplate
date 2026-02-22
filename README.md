@@ -9,6 +9,7 @@ A modern, high-performance boilerplate built for the next generation of web expe
 - **[GSAP](https://gsap.com/)**: Professional-grade animation library for complex, high-performance animations.
 - **[Lenis](https://lenis.darkroom.engineering/)**: Smooth scrolling for a premium feel.
 - **[Tempus](https://github.com/darkroomengineering/tempus)**: A single simplified rAF loop for smooth, synchronized animations across GSAP, Lenis, and Three.js.
+- **[Zustand](https://zustand.docs.pmnd.rs/)**: Lightweight state management for global store (e.g. animation control) without boilerplate.
 - **[Tailwind CSS v4](https://tailwindcss.com/)**: Utility-first CSS framework for rapid UI development.
 - **[TypeScript](https://www.typescriptlang.org/)**: Strongly typed for better developer experience and code quality.
 - **[Vite](https://vitejs.dev/)**: Next-generation frontend tooling.
@@ -67,6 +68,7 @@ The project follows a standard Vite + React application structure with specific 
 │   │   └── ...            # General UI components (Header, Footer, etc.)
 │   ├── 📂 data            # Static data files
 │   ├── 📂 lib             # Utilities and helpers
+│   ├── 📂 stores          # Zustand state stores (e.g. useAnimationStore)
 │   ├── 📂 routes          # TanStack Router file-based system
 │   │   ├── __root.tsx     # Root layout wrapper
 │   │   ├── index.tsx      # Landing page
@@ -85,7 +87,12 @@ The project follows a standard Vite + React application structure with specific 
 
 - **`src/routes`**: The heart of the application's file-based routing.
 - **`src/components/r3f`**: Dedicated folder for 3D-specific components to keep them separate from standard DOM UI.
+- **`src/stores`**: [Zustand](https://zustand.docs.pmnd.rs/) stores for global state (e.g. `useAnimationStore` for model animation control).
 - **`src/styles`**: Contains `index.css` (Tailwind v4 setup), `fonts.css`, and `lenis.css` (smooth scrolling).
+
+## 🗃️ State Management (Zustand)
+
+Global state is handled with [Zustand](https://zustand.docs.pmnd.rs/). Stores live in `src/stores/`. The boilerplate includes `useAnimationStore` for controlling 3D model animations from anywhere in the app (see [Animation System](#-animation-system)). Add new stores with `create()` and use `useShallow` from `zustand/react/shallow` when selecting multiple fields to avoid unnecessary re-renders.
 
 ## 🧊 3D Asset Workflow
 
@@ -145,7 +152,7 @@ export default function Model(props) {
 
 ### 2. Control from anywhere
 
-Trigger animations from any component in your app (UI, scroll triggers, etc.) using `useAnimationStore`.
+Trigger animations from any component in your app (UI, scroll triggers, etc.) using the Zustand store `useAnimationStore`.
 
 ```tsx
 import { useAnimationStore } from '@/stores/useAnimationStore';
