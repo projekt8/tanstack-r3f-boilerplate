@@ -19,7 +19,7 @@
     "homepage": "https://projekt8.net"
   },
   "engines": {
-    "node": ">=24.8.0"
+    "node": "v25.6.1"
   },
   "type": "module",
   "scripts": {
