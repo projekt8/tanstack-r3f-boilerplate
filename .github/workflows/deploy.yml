@@ -1,35 +1,59 @@
+# ------------------------------------------------------------------------------
+# Deploy to GitHub Pages
+# ------------------------------------------------------------------------------
+# This workflow builds the app, runs checks, and deploys to GitHub Pages on
+# pushes to main. On pull requests it only runs the build and checks (no deploy).
+#
+# How to use:
+#   • Push to main (or open a PR targeting main) → workflow runs automatically.
+#   • Manual run: Actions → "Deploy to GitHub Pages" → "Run workflow".
+#   • Requires: repo Settings → Pages → Source = "GitHub Actions".
+# ------------------------------------------------------------------------------
+
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+  # Same trigger config for push and PR (YAML anchor avoids duplication)
+  push: &on-main
+    branches: [main]
+    paths-ignore: # Skip runs when only these files change
+      - '**.md'
+      - 'renovate.json'
+      - 'LICENSE'
+      - '.vscode/**'
+      - '.cursor/**'
+  pull_request: *on-main
+  workflow_dispatch: # Run manually from the Actions tab
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: read # Default: checkout and read repo only
 
 concurrency:
-  group: 'pages'
-  cancel-in-progress: true
+  # One run per branch at a time; new runs cancel in-progress runs except on main
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
+  # --- Build: install, lint, test, build, and (on push) prepare Pages artifact ---
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: '24.8.0'
+          node-version-file: '.nvmrc'
           cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Dependency review
+        if: github.event_name == 'pull_request'
+        uses: actions/dependency-review-action@v4
 
       - name: Lint & format check
         run: npm run check
@@ -42,19 +66,29 @@ jobs:
         env:
           VITE_BASE_PATH: /${{ github.event.repository.name }}/
 
+      # GitHub Pages uses 404.html for client-side routing; copy index so SPA routes work
       - name: Create 404 page for GitHub Pages
+        if: github.event_name == 'push'
         run: cp .output/public/index.html .output/public/404.html
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      # Upload the build artifact
+      - name: Upload build artifact
+        if: github.event_name == 'push'
+        uses: actions/upload-pages-artifact@v4
         with:
           path: .output/public
 
+  # --- Deploy: only on push to main; publishes the build artifact to GitHub Pages ---
   deploy:
+    if: github.event_name == 'push'
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     needs: build
     steps:
       - name: Deploy to GitHub Pages

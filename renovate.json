@@ -1,0 +1,45 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:best-practices"],
+  "assignees": ["projekt8"],
+  "labels": ["dependencies"],
+  "lockFileMaintenance": { "enabled": true },
+  "prConcurrentLimit": 5,
+  "rangeStrategy": "pin",
+  "schedule": ["before 6am on monday"],
+  "packageRules": [
+    { "matchPackageNames": ["nitro"], "enabled": false },
+    {
+      "matchManagers": ["github-actions"],
+      "groupName": "GitHub Actions"
+    },
+    {
+      "matchPackageNames": ["/^@tanstack//"],
+      "groupName": "TanStack"
+    },
+    {
+      "matchPackageNames": ["/^@react-three\\//", "/^three/"],
+      "groupName": "R3F and Three"
+    },
+    {
+      "matchPackageNames": ["gsap", "@gsap/react"],
+      "groupName": "GSAP"
+    },
+    {
+      "matchPackageNames": ["/^vite/", "/^@vitejs\\//", "/vite-/"],
+      "groupName": "Vite"
+    },
+    {
+      "matchPackageNames": ["eslint", "prettier", "prettier-plugin-tailwindcss"],
+      "groupName": "Lint/Format"
+    },
+    {
+      "matchPackageNames": ["typescript", "ts-morph", "commander", "/^@fontsource-variable\\//"],
+      "groupName": "Tooling"
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "addLabels": ["major-update"]
+    }
+  ]
+}
