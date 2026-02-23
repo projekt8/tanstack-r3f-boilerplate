@@ -10,7 +10,7 @@
 #   • Requires: repo Settings → Pages → Source = "GitHub Actions".
 # ------------------------------------------------------------------------------
 
-name: Deploy to GitHub Pages
+name: GitHub Pages Workflow
 
 on:
   # Same trigger config for push and PR (YAML anchor avoids duplication)
