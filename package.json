@@ -72,7 +72,7 @@
     "@types/react": "19.2.15",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "6.0.2",
-    "commander": "14.0.3",
+    "commander": "15.0.0",
     "prettier": "3.8.3",
     "prettier-plugin-tailwindcss": "0.8.0",
     "ts-morph": "28.0.0",
