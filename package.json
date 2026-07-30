@@ -58,8 +58,8 @@
     "zustand": "5.0.14"
   },
   "devDependencies": {
-    "@fontsource-variable/inter": "5.2.8",
-    "@fontsource-variable/playfair-display": "5.2.8",
+    "@fontsource-variable/inter": "5.3.0",
+    "@fontsource-variable/playfair-display": "5.3.0",
     "@pmndrs/assets": "1.7.0",
     "@tanstack/devtools-vite": "0.8.1",
     "@tanstack/eslint-config": "0.4.0",
