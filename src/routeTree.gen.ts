@@ -10,19 +10,19 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ExamplesResponsive3dElementsRouteImport } from './routes/examples/responsive-3d-elements'
-import { Route as ExamplesCustomGlslShaderRouteImport } from './routes/examples/custom-glsl-shader'
 import { Route as ExamplesCharacterAnimationsRouteImport } from './routes/examples/character-animations'
+import { Route as ExamplesCustomGlslShaderRouteImport } from './routes/examples/custom-glsl-shader'
+import { Route as ExamplesResponsive3dElementsRouteImport } from './routes/examples/responsive-3d-elements'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ExamplesResponsive3dElementsRoute =
-  ExamplesResponsive3dElementsRouteImport.update({
-    id: '/examples/responsive-3d-elements',
-    path: '/examples/responsive-3d-elements',
+const ExamplesCharacterAnimationsRoute =
+  ExamplesCharacterAnimationsRouteImport.update({
+    id: '/examples/character-animations',
+    path: '/examples/character-animations',
     getParentRoute: () => rootRouteImport,
   } as any)
 const ExamplesCustomGlslShaderRoute =
@@ -31,10 +31,10 @@ const ExamplesCustomGlslShaderRoute =
     path: '/examples/custom-glsl-shader',
     getParentRoute: () => rootRouteImport,
   } as any)
-const ExamplesCharacterAnimationsRoute =
-  ExamplesCharacterAnimationsRouteImport.update({
-    id: '/examples/character-animations',
-    path: '/examples/character-animations',
+const ExamplesResponsive3dElementsRoute =
+  ExamplesResponsive3dElementsRouteImport.update({
+    id: '/examples/responsive-3d-elements',
+    path: '/examples/responsive-3d-elements',
     getParentRoute: () => rootRouteImport,
   } as any)
 
@@ -94,11 +94,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/examples/responsive-3d-elements': {
-      id: '/examples/responsive-3d-elements'
-      path: '/examples/responsive-3d-elements'
-      fullPath: '/examples/responsive-3d-elements'
-      preLoaderRoute: typeof ExamplesResponsive3dElementsRouteImport
+    '/examples/character-animations': {
+      id: '/examples/character-animations'
+      path: '/examples/character-animations'
+      fullPath: '/examples/character-animations'
+      preLoaderRoute: typeof ExamplesCharacterAnimationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/examples/custom-glsl-shader': {
@@ -108,11 +108,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExamplesCustomGlslShaderRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/examples/character-animations': {
-      id: '/examples/character-animations'
-      path: '/examples/character-animations'
-      fullPath: '/examples/character-animations'
-      preLoaderRoute: typeof ExamplesCharacterAnimationsRouteImport
+    '/examples/responsive-3d-elements': {
+      id: '/examples/responsive-3d-elements'
+      path: '/examples/responsive-3d-elements'
+      fullPath: '/examples/responsive-3d-elements'
+      preLoaderRoute: typeof ExamplesResponsive3dElementsRouteImport
       parentRoute: typeof rootRouteImport
     }
   }

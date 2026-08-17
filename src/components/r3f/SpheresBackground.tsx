@@ -5,6 +5,7 @@ import { Environment, Instance, Instances, PerspectiveCamera } from '@react-thre
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import type { InstancedMesh, Object3D } from 'three';
+import { suspend } from 'suspend-react';
 
 const particles = Array.from({ length: 150 }, () => ({
   factor: MathUtils.randInt(20, 100),
@@ -13,6 +14,8 @@ const particles = Array.from({ length: 150 }, () => ({
   yFactor: MathUtils.randFloatSpread(10),
   zFactor: MathUtils.randFloatSpread(10),
 }));
+
+const environmentTexture = import('@pmndrs/assets/hdri/city.exr').then((module) => module.default);
 
 export default function SpheresBackground() {
   return (
@@ -23,7 +26,7 @@ export default function SpheresBackground() {
 
       <Bubbles />
 
-      <Environment preset="city" />
+      <Environment files={suspend(environmentTexture) as string} />
     </>
   );
 }
